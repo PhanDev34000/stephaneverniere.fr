@@ -1,0 +1,20 @@
+# Node/Angular
+node_modules/
+dist/
+build/
+.angular/
+
+# Environnements (secrets)
+.env
+.env.*
+backend/.env
+frontend/.env
+
+# Logs & OS
+*.log
+logs/
+.DS_Store
+
+# IDE (optionnel mais recommandé)
+.vscode/
+.idea/

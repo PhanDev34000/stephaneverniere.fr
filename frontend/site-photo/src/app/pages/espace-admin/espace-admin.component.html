@@ -1,0 +1,20 @@
+<div class="container py-4" style="max-width: 720px;">
+  <h1 class="h4 mb-3">Espace Admin</h1>
+
+  <button class="btn btn-primary mb-3" (click)="testerMe()" [disabled]="loading">
+    {{ loading ? 'Test en cours…' : 'Tester /api/auth/me' }}
+  </button>
+
+  @if (me) {
+    <div class="alert alert-success">
+      <strong>Réponse:</strong>
+      <pre class="mb-0">{{ me | json }}</pre>
+    </div>
+  }
+
+  @if (error) {
+    <div class="alert alert-danger">
+      {{ error }}
+    </div>
+  }
+</div>

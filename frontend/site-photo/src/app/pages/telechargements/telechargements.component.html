@@ -1,0 +1,40 @@
+<div class="container py-4">
+  <h1 class="mb-3">Téléchargements</h1>
+  <p class="text-muted">Retrouvez vos galeries et téléchargez les en un clic.</p>
+
+  @if (error()) { <div class="alert alert-danger">{{ error() }}</div> }
+  @if (success()) { <div class="alert alert-success">{{ success() }}</div> }
+
+  @if (loading()) {
+    <div class="text-muted">Chargement…</div>
+  } @else {
+    @if (galleries().length === 0) {
+      <div class="alert alert-info">Aucune galerie disponible pour votre compte.</div>
+    } @else {
+      <div class="table-responsive">
+        <table class="table align-middle">
+          <thead>
+            <tr>
+              <th>Galerie</th>
+              <th>Photos</th>
+              <th>Créée le</th>
+              <th class="text-end">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (g of galleries(); track g._id) {
+              <tr>
+                <td>{{ g.title }}</td>
+                <td>{{ g.filesCount }}</td>
+                <td>{{ g.createdAt | date:'dd/MM/yyyy HH:mm' }}</td>
+                <td class="text-end">
+                  <button class="btn btn-primary btn-sm" (click)="downloadZip(g)">Télécharger</button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+  }
+</div>

@@ -1,0 +1,41 @@
+<div class="container" style="max-width: 480px;">
+  <h1 class="h3 my-4 text-center">Connexion</h1>
+
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+    <div class="mb-3">
+      <label class="form-label">Identifiant (nom de projet)</label>
+      <input
+        type="text"
+        class="form-control"
+        name="identifiant"
+        [(ngModel)]="identifiant"
+        required
+        autocomplete="username"
+      />
+      <div class="form-text">Ex: <code>mariage-dupont-2025</code> ou <code>admin</code></div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Mot de passe</label>
+      <input
+        type="password"
+        class="form-control"
+        name="password"
+        [(ngModel)]="password"
+        required
+        autocomplete="current-password"
+      />
+    </div>
+
+    @if (error) {
+      <div class="alert alert-danger py-2">{{ error }}</div>
+    }
+
+    <button
+      class="btn btn-primary w-100"
+      [disabled]="f.invalid || loading"
+      type="submit">
+      {{ loading ? 'Connexion…' : 'Se connecter' }}
+    </button>
+  </form>
+</div>

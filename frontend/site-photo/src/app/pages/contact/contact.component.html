@@ -1,0 +1,94 @@
+<div class="container py-4">
+  <h1 class="mb-3">Contact</h1>
+  <h4 class="text-muted mb-4">Une question?<br>Besoin d'une information ? </h4>
+
+  @if (success()) {
+    <div class="alert alert-success" role="alert">{{ success() }}</div>
+  }
+  @if (error()) {
+    <div class="alert alert-danger" role="alert">{{ error() }}</div>
+  }
+
+  <form [formGroup]="form" (ngSubmit)="submit()" novalidate class="needs-validation">
+    <div class="row g-3">
+      <div class="col-md-6">
+        <label class="form-label">Nom <span class="text-danger">*</span></label>
+        <input class="form-control" type="text" formControlName="nom">
+        @if (form.controls.nom.touched && form.controls.nom.hasError('required')) {
+          <div class="invalid-feedback d-block">Le nom est requis.</div>
+        }
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Prénom <span class="text-danger">*</span></label>
+        <input class="form-control" type="text" formControlName="prenom">
+        @if (form.controls.prenom.touched && form.controls.prenom.hasError('required')) {
+          <div class="invalid-feedback d-block">Le prénom est requis.</div>
+        }
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">E-mail <span class="text-danger">*</span></label>
+        <input class="form-control" type="email" placeholder="nom@domaine.fr" formControlName="mail">
+        @if (form.controls.mail.touched && form.controls.mail.hasError('required')) {
+          <div class="invalid-feedback d-block">L’email est requis.</div>
+        }
+        @if (form.controls.mail.touched && form.controls.mail.hasError('email')) {
+          <div class="invalid-feedback d-block">Format d’email invalide.</div>
+        }
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Téléphone (optionnel)</label>
+        <input class="form-control" type="tel" placeholder="+33 6 12 34 56 78" formControlName="tel">
+        @if (form.controls.tel.touched && form.controls.tel.hasError('pattern')) {
+          <div class="invalid-feedback d-block">Numéro invalide.</div>
+        }
+      </div>
+
+      <div class="col-12">
+        <label class="form-label d-block">Message pour <span class="text-danger">*</span></label>
+        <div class="d-flex gap-3 flex-wrap">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" id="mp-ph" value="photographe" formControlName="messagePour">
+            <label class="form-check-label" for="mp-ph">Photographe</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" id="mp-pb" value="photobooth" formControlName="messagePour">
+            <label class="form-check-label" for="mp-pb">Photobooth</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" id="mp-both" value="les-deux" formControlName="messagePour">
+            <label class="form-check-label" for="mp-both">Les deux</label>
+          </div>
+        </div>
+        @if (form.controls.messagePour.touched && form.controls.messagePour.hasError('required')) {
+          <div class="invalid-feedback d-block">Veuillez choisir une option.</div>
+        }
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Date (optionnel)</label>
+        <input class="form-control" type="date" formControlName="date" [min]="today">
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Lieu (optionnel)</label>
+        <input class="form-control" type="text" formControlName="lieu" placeholder="Ville / adresse">
+      </div>
+
+      <div class="col-12">
+        <label class="form-label">Message <span class="text-danger">*</span></label>
+        <textarea class="form-control" rows="5" formControlName="message" placeholder="Votre message..."></textarea>
+        @if (form.controls.message.touched && form.controls.message.hasError('required')) {
+          <div class="invalid-feedback d-block">Le message est requis.</div>
+        }
+      </div>
+    </div>
+
+    <div class="d-flex gap-2 mt-4">
+      <button class="btn btn-primary" type="submit" [disabled]="loading()">Envoyer</button>
+      <button class="btn btn-outline-secondary" type="reset" [disabled]="loading()">Réinitialiser</button>
+    </div>
+  </form>
+</div>

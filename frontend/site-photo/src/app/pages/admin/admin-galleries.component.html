@@ -1,0 +1,78 @@
+@if (success()) { <div class="alert alert-success mb-3">{{ success() }}</div> }
+@if (error()) { <div class="alert alert-danger mb-3">{{ error() }}</div> }
+
+<!-- Création d'une galerie -->
+<form [formGroup]="form" (ngSubmit)="create()" class="row g-3 mb-4" novalidate>
+  <div class="col-md-4">
+    <label class="form-label">Client <span class="text-danger">*</span></label>
+    <select class="form-select" formControlName="clientId">
+      <option value="">Sélectionner…</option>
+      @for (c of clients(); track c._id) {
+        <option [value]="c._id">{{ c.identifiant }} {{ c.email ? '('+c.email+')' : '' }}</option>
+      }
+    </select>
+    @if (form.controls.clientId.touched && form.controls.clientId.hasError('required')) {
+      <div class="invalid-feedback d-block">Requis.</div>
+    }
+  </div>
+
+  <div class="col-md-8">
+    <label class="form-label">Titre <span class="text-danger">*</span></label>
+    <input class="form-control" formControlName="title">
+    @if (form.controls.title.touched && form.controls.title.hasError('required')) {
+      <div class="invalid-feedback d-block">Requis.</div>
+    }
+  </div>
+
+  <div class="col-12">
+    <label class="form-label">Fichiers (multi)</label>
+    <input class="form-control" type="file" (change)="onFiles($event)" multiple>
+    <div class="form-text">JPG/PNG recommandés.</div>
+  </div>
+
+  <div class="col-12 d-flex gap-2">
+    <button class="btn btn-primary" type="submit" [disabled]="loading()">Créer la galerie</button>
+    <button class="btn btn-outline-secondary" type="button" (click)="reload()" [disabled]="loading()">Rafraîchir</button>
+  </div>
+</form>
+
+<!-- Listing -->
+<div class="table-responsive">
+  <table class="table align-middle">
+    <thead>
+      <tr>
+        <th>Titre</th>
+        <th>Client</th>
+        <th>Fichiers</th>
+        <th class="text-end">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (g of galleries(); track g._id) {
+        <tr>
+          <td>
+            @if (editId() === g._id) {
+              <input class="form-control" [(ngModel)]="editBuffer.title" />
+            } @else { {{ g.title }} }
+          </td>
+          <td>{{ clientName(g.clientId) }}</td>
+          <td>{{ g.files?.length ?? 0 }}</td>
+          <td class="text-end">
+            @if (editId() === g._id) {
+              <button class="btn btn-success btn-sm me-2" (click)="save(g)">Enregistrer</button>
+              <button class="btn btn-outline-secondary btn-sm" (click)="cancel()">Annuler</button>
+            } @else {
+              <button class="btn btn-outline-primary btn-sm me-2" (click)="startEdit(g)">Éditer</button>
+              <button class="btn btn-outline-danger btn-sm me-2" (click)="remove(g)">Supprimer</button>
+              <button class="btn btn-secondary btn-sm me-2" (click)="downloadZip(g)">Télécharger ZIP</button>
+              <label class="btn btn-outline-dark btn-sm mb-0">
+                Ajouter des fichiers
+                <input type="file" hidden multiple (change)="uploadMore(g, $event)">
+              </label>
+            }
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
