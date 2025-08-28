@@ -1,0 +1,109 @@
+@if (success()) { <div class="alert alert-success mb-3">{{ success() }}</div> }
+@if (error()) { <div class="alert alert-danger mb-3">{{ error() }}</div> }
+
+<form [formGroup]="form" (ngSubmit)="create()" class="row g-3 mb-4" novalidate>
+  <div class="col-md-4">
+    <label class="form-label">Identifiant <span class="text-danger">*</span></label>
+    <input class="form-control" formControlName="identifiant">
+    @if (form.controls.identifiant.touched && form.controls.identifiant.hasError('required')) {
+      <div class="invalid-feedback d-block">Requis.</div>
+    }
+  </div>
+  <div class="col-md-4">
+    <label class="form-label">Email (optionnel)</label>
+    <input class="form-control" formControlName="email" type="email">
+    @if (form.controls.email.touched && form.controls.email.hasError('email')) {
+      <div class="invalid-feedback d-block">Email invalide.</div>
+    }
+  </div>
+  <div class="col-md-4">
+    <label class="form-label">Mot de passe <span class="text-danger">*</span></label>
+    <input class="form-control" formControlName="password" type="password" autocomplete="new-password">
+    @if (form.controls.password.touched && form.controls.password.hasError('required')) {
+      <div class="invalid-feedback d-block">Requis.</div>
+    }
+  </div>
+  <div class="col-12 d-flex gap-2">
+    <button class="btn btn-primary" type="submit" [disabled]="loading()">Créer</button>
+    <button class="btn btn-outline-secondary" type="button" (click)="reload()" [disabled]="loading()">Rafraîchir</button>
+  </div>
+</form>
+
+<div class="table-responsive">
+  <table class="table align-middle">
+    <thead>
+      <tr>
+        <th>Identifiant</th>
+        <th>Email</th>
+        <th>Actif</th>
+        <th class="text-end">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (c of clients(); track c._id) {
+        <tr>
+          <td>
+            @if (editId() === c._id) {
+              <input class="form-control" [(ngModel)]="editBuffer.identifiant" />
+            } @else {
+              {{ c.identifiant }}
+            }
+          </td>
+          <td>
+            @if (editId() === c._id) {
+              <input class="form-control" [(ngModel)]="editBuffer.email" type="email" />
+            } @else {
+              {{ c.email || '—' }}
+            }
+          </td>
+          <td>
+            @if (editId() === c._id) {
+              <select class="form-select" [(ngModel)]="editBuffer.isActive">
+                <option [ngValue]="true">Oui</option>
+                <option [ngValue]="false">Non</option>
+              </select>
+            } @else {
+              {{ c.isActive ? 'Oui' : 'Non' }}
+            }
+          </td>
+          <td class="text-end">
+            @if (editId() === c._id) {
+              <button class="btn btn-success btn-sm me-2" (click)="save(c)">Enregistrer</button>
+              <button class="btn btn-outline-secondary btn-sm" (click)="cancel()">Annuler</button>
+            } @else {
+              <button class="btn btn-outline-primary btn-sm me-2" (click)="startEdit(c)">Éditer</button>
+              <button class="btn btn-outline-danger btn-sm" (click)="remove(c)">Supprimer</button>
+            }
+          </td>
+        </tr>
+
+        @if (editId() === c._id) {
+          <tr class="table-light">
+            <td colspan="4">
+              <div class="row g-2 align-items-center">
+                <div class="col-md-4">
+                  <input
+                    class="form-control"
+                    [(ngModel)]="editPassword"
+                    type="password"
+                    placeholder="Nouveau mot de passe (min 6)"
+                    autocomplete="new-password" />
+                </div>
+                <div class="col-auto">
+                  <button class="btn btn-warning btn-sm"
+                          (click)="changePassword(c)"
+                          [disabled]="!editPassword || editPassword.length < 6 || loading()">
+                    Enregistrer le mot de passe
+                  </button>
+                </div>
+                <div class="col text-muted small">
+                  Pour la sécurité, l’ancien mot de passe n’est **jamais** affiché.
+                </div>
+              </div>
+            </td>
+          </tr>
+        }
+      }
+    </tbody>
+  </table>
+</div>
