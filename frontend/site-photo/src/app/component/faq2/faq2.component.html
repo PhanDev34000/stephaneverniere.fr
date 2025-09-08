@@ -1,0 +1,15 @@
+<section class="faq2">
+  <h2 class="faq2__title">F.A.Q</h2>
+
+  <div class="faq2__list">
+    <details class="faq2__item" *ngFor="let item of faqs">
+      <summary class="faq2__question">
+        {{ item.q }}
+      </summary>
+
+      <div class="faq2__answer">
+        <p>{{ item.a }}</p>
+      </div>
+    </details>
+  </div>
+</section>

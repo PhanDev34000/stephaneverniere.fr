@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-type LoginResponse = { token: string; role: 'admin' | 'utilisateur' };
+type LoginResponse =
+  | { token: string; role: 'admin' | 'utilisateur' }
+  | { token: string; user: { role: 'admin' | 'utilisateur' } };
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -12,21 +14,45 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   login(identifiant: string, password: string) {
-    return this.http.post<LoginResponse>(`${this.api}/login`, { identifiant, password });
-  }
+  // on accepte les 2 formats côté back
+  return this.http.post<any>(`${this.api}/login`, { identifiant, password });
+}
 
-  saveAuth({ token, role }: LoginResponse) {
-    localStorage.setItem(this.storageKey, token);
-    localStorage.setItem(this.roleKey, role);
-  }
+  saveAuth(res: any) {
+      const token: string | null = res?.token ?? null;
+      const roleFromRes: string | null = res?.role ?? res?.user?.role ?? null;
+
+      if (token) localStorage.setItem(this.storageKey, token);
+
+      let role = roleFromRes;
+      if (!role && token) {
+        // fallback: on décode le JWT si role non présent à la racine
+        try { role = JSON.parse(atob(token.split('.')[1]))?.role ?? null; } catch {}
+      }
+      if (role) localStorage.setItem(this.roleKey, role);
+    }
+
 
   getToken(): string | null {
     return localStorage.getItem(this.storageKey);
   }
 
   getRole(): 'admin' | 'utilisateur' | null {
-    return (localStorage.getItem(this.roleKey) as any) ?? null;
-  }
+  let role = localStorage.getItem(this.roleKey);
+  if (role && role !== 'undefined') return role as any;
+
+  const token = this.getToken();
+  if (!token) return null;
+  try {
+    role = JSON.parse(atob(token.split('.')[1]))?.role ?? null;
+    if (role) {
+      localStorage.setItem(this.roleKey, role);
+      return role as any;
+    }
+  } catch {}
+  return null;
+}
+
 
   isLoggedIn(): boolean {
     return !!this.getToken();

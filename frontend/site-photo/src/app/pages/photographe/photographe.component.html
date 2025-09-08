@@ -1,1 +1,139 @@
-<p>photographe works!</p>
+<!--    1ere image    -->
+<section class="bandeau full-bleed">
+  <img
+    src="assets/bandeau/graphe.png"
+    alt="Bandeau d’introduction"
+    class="bandeau-img"
+    loading="eager"
+  />
+</section>
+<!--    Présentation    -->
+<section class="presentation full-bleed">
+  <div class="container">
+    <h2>Présentation</h2>    
+    <p>
+        Riche d'une vingtaine d'années d'expérience en tant que photographe indépendant et pour diverses agences, je vous offre un <strong>éventail complet de services photographiques</strong>, que vous soyez un professionnel ou un particulier.<br> Mon parcours m'a permis de développer une expertise dans divers domaines de la photographie, afin de répondre au mieux à vos besoins.<br>
+        En tant que photographe polyvalent, je suis cependant spécialisé dans les domaines suivants :<br>
+            - <strong>Photographie de reportages</strong> : Capturer des moments authentiques et des histoires uniques, que ce soit pour des événements spéciaux, des mariages, des séances familiales, ou des projets documentaires.<br>
+            - <strong>Événementiel</strong> : Immortaliser vos événements professionnels ou personnels, en garantissant des images qui reflètent l'ambiance et l'importance de l'occasion.<br>
+            - <strong>Institutionnel</strong> : Fournir des images de qualité professionnelle pour vos besoins de communication d'entreprise, que ce soit pour des portraits, des images corporatives, ou des photos de produits.<br>
+        Que vous soyez une entreprise cherchant à renforcer votre image de marque ou un particulier souhaitant préserver des souvenirs précieux, je mets <strong>mon expérience et ma créativité à votre service</strong>.<br>
+        N'hésitez pas à me contacter pour discuter de vos projets photographiques, je suis là pour concrétiser vos idées en images.
+    </p>
+  </div>
+</section>
+<!-- Caroussels -->
+
+<!-- Titre global -->
+<section class="prestations full-bleed">
+  <div class="container">
+    <h2 class="presentation_title">Prestations</h2>
+    <h4 id="presta">Mes prestations s’adaptent à vos besoins, du particulier au professionnel.</h4>
+  </div>
+</section>
+
+<!-- Portrait -->
+<section class="prestation full-bleed">
+  <div class="container">
+    <h3 class="prestation__title">Portrait</h3>
+  </div>
+  <app-film-strip2
+  [folder]="'prestations/Portrait'"
+  [limit]="40"
+  [shuffle]="true"
+  [widthPercent]="90"
+  [background]="'secondary'"
+  style="--strip-h: 250px">
+</app-film-strip2>
+</section>
+
+<!-- Packshot -->
+<section class="prestation full-bleed">
+  <div class="container">
+    <h3 class="prestation__title">Packshot</h3>
+  </div>
+  <app-film-strip2
+  [folder]="'prestations/packshot'"
+  [limit]="40"
+  [shuffle]="true"
+  [widthPercent]="90"
+  [background]="'secondary'"
+  style="--strip-h: 250px">
+</app-film-strip2>
+</section>
+
+<!-- Mariage -->
+<section class="prestation full-bleed">
+  <div class="container">
+    <h3 class="prestation__title">Mariage</h3>
+  </div>
+  <app-film-strip2
+  [folder]="'prestations/mariage'"
+  [limit]="40"
+  [shuffle]="true"
+  [widthPercent]="90"
+  [background]="'secondary'"
+  style="--strip-h: 250px">
+</app-film-strip2>
+</section>
+
+<!-- Institutionnel -->
+<section class="prestation full-bleed">
+  <div class="container">
+    <h3 class="prestation__title">Institutionnel</h3>
+  </div>
+  <app-film-strip2
+  [folder]="'prestations/institutionnel'"
+  [limit]="40"
+  [shuffle]="true"
+  [widthPercent]="90"
+  [background]="'secondary'"
+  style="--strip-h: 250px">
+</app-film-strip2>
+</section>
+
+<!-- Événementiel -->
+<section class="prestation full-bleed">
+  <div class="container">
+    <h3 class="prestation__title">Événementiel</h3>
+  </div>
+  <app-film-strip2
+  [folder]="'prestations/evenementiel'"
+  [limit]="40"
+  [shuffle]="true"
+  [widthPercent]="90"
+  [background]="'secondary'"
+  style="--strip-h: 250px">
+</app-film-strip2>
+</section>
+
+<!-- Divers -->
+<section class="prestation full-bleed">
+  <div class="container">
+    <h3 class="prestation__title">Divers<span class="help" tabindex="0"
+    aria-label="Autres prestations : Photos d'Art, Vernissage, Prêt à porter (lingerie, collections...), Photographe plateau, Concert …">?</span></h3>
+  </div>
+  <app-film-strip2
+  [folder]="'prestations/divers'"
+  [limit]="40"
+  [shuffle]="true"
+  [widthPercent]="90"
+  [background]="'secondary'"
+  style="--strip-h: 250px">
+</app-film-strip2>
+</section>
+
+<!--   FAQ  -->
+<app-faq2></app-faq2>
+
+<!-- Contactez-moi  -->
+ <section class="cta full-bleed">
+  <div class="section-inner">
+    <h5>Echanger sur votre projet, mes disponibilités, mes tarifs ...</h5>
+    <h2>Pour plus d'infos, contactez-moi !</h2>
+    
+    <button class="btn-contact" type="button" routerLink="/contact">
+      Contact
+    </button>
+  </div>
+</section>

@@ -1,0 +1,151 @@
+.bandeau-img {
+  display: block;     /* enlève l’espace blanc sous l’image */
+  width: 100%;        /* prend toute la largeur dispo */
+  height: auto;       /* garde le ratio d’origine, pas de “grossissement” */
+  max-width: 100%;
+}
+
+.presentation {
+  background: var(--primary-color);
+  color: white;
+  padding: clamp(24px, 5vw, 56px) 0;
+}
+
+/* Contrainte de largeur à l’intérieur du full-bleed */
+.presentation__inner {
+  max-width: 1440px;   
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.presentation h2 {
+  margin: 0 0 1.5rem 0;
+  text-align: center;  
+  font-weight: 600;
+}
+
+#presta {
+  text-align: center;
+}
+
+.presentation p { 
+   text-align: center;  
+  line-height: 1.6;
+  font-size: clamp(1rem, 1.15rem + .2vw, 1.125rem);
+  padding: 0 0.5rem;
+}
+
+
+                              /*   Caroussel  */
+
+/* utilitaire full-bleed  */
+.full-bleed {
+  width: 100vw;
+}
+
+/* titre H2 centré */
+.presentation_title {
+  text-align: center;
+  font-weight: 600;  
+  padding-top: 15px;
+}
+
+/* bandeau du H2 */
+.prestations {
+  background: var(--secondary-color);
+  color: #fff;
+  padding: 16px 0;
+}
+
+.prestation {
+  background: var(--secondary-color);
+  color: #fff;
+}
+
+.prestation__title {
+  margin: 0 0 10px 0;
+  padding-top: 20px;
+  padding-left: 6vw; 
+  
+  white-space: normal;
+}
+
+
+
+/* Bandeau CTA */
+.cta {
+  background: var(--primary-color);
+  color: #fff;                     
+  text-align: center;
+  padding: clamp(24px, 5vw, 56px) 0;
+}
+
+.btn-contact {
+  display: inline-block;
+  margin-top: 0.75rem;
+  padding: 10px 22px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: var(--secondary-color);
+  color: #fff;                     
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .2s ease, transform .1s ease, box-shadow .2s ease;  
+}
+
+/*   Info bulle Divers   */
+.prestation__title {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.help {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  font-size : 17px;
+  cursor: help;
+  position: relative;
+  opacity: 0.9;
+  
+}
+
+/* Bulle */
+.help::after {
+  content: attr(aria-label);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(100% + 8px);
+  background: var(--primary-color);
+  color: #fff;
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  width: min(320px, 90vw);
+  white-space: normal;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .15s;
+}
+
+/* Petit triangle */
+.help::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 100%;
+  border: 6px solid transparent;
+  border-top-color: rgba(0,0,0,.9);
+  opacity: 0;
+  transition: opacity .15s;
+}
+
+.help:hover::after,
+.help:focus::after,
+.help:hover::before,
+.help:focus::before { opacity: 1; }

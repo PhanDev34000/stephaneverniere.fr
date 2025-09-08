@@ -1,0 +1,60 @@
+/* Conteneur global */
+.container {
+  background: var(--primary-color);
+  color: white;
+  padding: 3rem; 
+}
+
+.full-bleed {
+  background: var(--primary-color);
+  width: 100vw;  
+}
+
+
+/* Titre et sous-titre */
+h1, h5 {
+  color: white;
+  text-align: center;
+}
+
+/* Messages d’alerte : texte blanc aussi */
+.alert {
+  color: white;
+}
+
+/* Table : lignes et entête en blanc */
+.table {
+  
+  thead th {
+    border-bottom: 2px solid var(--primary-color);
+    color: black;
+    background: var(--secondary-color); 
+  }
+
+  tbody td {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+  }
+}
+
+.table-responsive {
+  border-radius: 12px;
+  overflow: hidden; 
+  margin-top: 5vh;
+  
+}
+
+
+/* Bouton télécharger */
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  border-radius: 8px;
+
+  &:hover,
+  &:focus {
+    background-color: var(--primary-color);
+    opacity: 0.8;
+    border-color: var(--primary-color);
+  }
+}
+

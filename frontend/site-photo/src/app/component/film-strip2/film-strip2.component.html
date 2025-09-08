@@ -1,0 +1,31 @@
+<section class="film-strip2"
+         [class.film-strip2--secondary]="background === 'secondary'"
+         [class.film-strip2--primary]="background === 'primary'">
+  <div class="inner" [ngStyle]="{ 'width.%': widthPercent }">
+
+    <h3 *ngIf="title" >{{ title }}</h3>
+
+    <button class="nav prev" type="button" (click)="prev()" aria-label="Précédent">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
+    <div class="rail" #rail>
+      <img *ngFor="let p of items"
+           [src]="p.urls.sm"
+           [attr.srcset]="p.urls.sm + ' 600w, ' + p.urls.md + ' 1200w'"
+           sizes="(max-width: 768px) 80vw, 600px"
+           loading="lazy"
+           alt="photo" />
+    </div>
+
+    <button class="nav next" type="button" (click)="next()" aria-label="Suivant">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+</section>

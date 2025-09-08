@@ -1,9 +1,9 @@
-<div class="container" style="max-width: 480px;">
+<div class="container login-form" style="max-width: 580px;">
   <h1 class="h3 my-4 text-center">Connexion</h1>
 
   <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
     <div class="mb-3">
-      <label class="form-label">Identifiant (nom de projet)</label>
+      <label class="form-label">Identifiant</label>
       <input
         type="text"
         class="form-control"
@@ -12,7 +12,7 @@
         required
         autocomplete="username"
       />
-      <div class="form-text">Ex: <code>mariage-dupont-2025</code> ou <code>admin</code></div>
+      
     </div>
 
     <div class="mb-3">

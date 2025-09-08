@@ -1,0 +1,53 @@
+/* Image plein écran */
+.splash {
+  position: fixed;
+  inset: 0;
+  background: center/cover no-repeat url('/assets/images/Intro.jpg');
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+}
+
+/* Léger voile pour lisibilité du texte (un peu plus marqué) */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(7, 59, 76, 0.35); /* 0.25 → 0.35 pour mieux lire le blanc */
+  z-index: 0;
+}
+
+/* Bloc texte */
+.title-wrap {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 1rem 2rem;
+  /* animation plus discrète (fade simple) */
+  animation: fadeIn 350ms ease forwards;
+  @media (prefers-reduced-motion: reduce) { animation: none; }
+}
+
+/* Titres : blanc + tailles plus généreuses */
+.splash .title-wrap h1,
+.splash .title-wrap h5 {
+  color: #fff; /* ← blanc */
+  text-shadow: 0 2px 10px rgba(0,0,0,.35);
+  margin: 0;
+}
+
+.splash .title-wrap h1 {
+  font-weight: 700;
+  font-size: clamp(2rem, 4.5vw, 4rem);
+  margin-bottom: .5rem;
+}
+
+.splash .title-wrap h5 {
+  font-weight: 500;
+  font-size: clamp(1.2rem, 3vw, 2.2rem);
+}
+
+/* Animation douce */
+@keyframes fadeIn {
+  from { opacity: 0 }
+  to   { opacity: 1 }
+}
