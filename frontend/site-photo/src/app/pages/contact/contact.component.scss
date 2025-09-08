@@ -1,0 +1,67 @@
+.bandeau-img {
+  display: block;     /* enlève l’espace blanc sous l’image */
+  width: 100%;        /* prend toute la largeur dispo */
+  height: auto;       /* garde le ratio d’origine, pas de “grossissement” */
+  max-width: 100%;
+}
+
+/* Bloc plein écran (sans bandes) */
+.contact-form {
+  background: var(--primary-color);
+  color: #fff;
+  padding: 2rem 0;
+  box-shadow: 0 0 0 100vmax var(--primary-color);
+  clip-path: inset(0 -100vmax);
+}
+
+                             /* Formulaire   */
+/* Titres centrés  */
+.contact-form h1,
+.contact-form h4 {
+  text-align: center;
+  color: #fff !important;
+  margin: 0 0 1rem;
+}
+
+/* Réduire la largeur du formulaire */
+.contact-form form {
+  max-width: 1000px;   
+  margin: 0 auto;
+}
+
+/* Champs blancs */
+.contact-form .form-control,
+.contact-form .form-select,
+.contact-form textarea {
+  background: #fff;
+  color: #222;
+  border: 1px solid #e5e5e5;
+}
+.contact-form .form-control:focus,
+.contact-form .form-select:focus,
+.contact-form textarea:focus {
+  border-color: var(--secondary-color);
+  outline: 0;
+  box-shadow: none;
+}
+
+/* Boutons centrés + secondary */
+.contact-form form .d-flex { justify-content: center; }
+.contact-form .btn.btn-primary {
+  background: var(--secondary-color);
+  border-color: var(--secondary-color);
+}
+.contact-form .btn.btn-outline-secondary {
+  color: var(--secondary-color);
+  border-color: var(--secondary-color);
+}
+.contact-form .btn.btn-outline-secondary:hover {
+  background: var(--secondary-color);
+  color: #fff;
+}
+
+form {
+  border: 2px solid white;
+  padding: 2rem;       
+  border-radius: 8px;
+}

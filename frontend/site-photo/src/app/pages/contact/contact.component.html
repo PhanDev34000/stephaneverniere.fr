@@ -1,6 +1,16 @@
-<div class="container py-4">
-  <h1 class="mb-3">Contact</h1>
+<!--    1ere image    -->
+<section class="bandeau full-bleed">
+  <img
+    src="assets/bandeau/contact.png"
+    alt="Bandeau d’introduction"
+    class="bandeau-img"
+    loading="eager"
+  />
+</section>
+
+<div class="container py-4 contact-form">  
   <h4 class="text-muted mb-4">Une question?<br>Besoin d'une information ? </h4>
+  <h1 class="mb-5">Contactez-moi !</h1>
 
   @if (success()) {
     <div class="alert alert-success" role="alert">{{ success() }}</div>

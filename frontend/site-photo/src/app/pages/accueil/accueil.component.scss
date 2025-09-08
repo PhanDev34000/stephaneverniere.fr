@@ -1,0 +1,270 @@
+.bandeau-img {
+  display: block;     /* enlève l’espace blanc sous l’image */
+  width: 100%;        /* prend toute la largeur dispo */
+  height: auto;       /* garde le ratio d’origine, pas de “grossissement” */
+  max-width: 100%;
+}
+
+/* Section Présentation */
+.presentation {
+  background: var(--primary-color);
+  color: white;
+  padding: clamp(24px, 5vw, 56px) 0;
+}
+
+/* Contrainte de largeur à l’intérieur du full-bleed */
+.presentation__inner {
+  max-width: 1440px;   
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.presentation h2 {
+  margin: 0 0 1.5rem 0;
+  text-align: center;  
+  font-weight: 600;
+}
+
+/* Grille 1fr 3fr 1fr */
+.presentation-grid {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  gap: clamp(16px, 3vw, 32px);
+  align-items: center;
+}
+
+/* Centrage des colonnes images */
+.img-wrap {
+  display: grid;
+  place-items: center;
+  width: 100%;
+}
+
+/* Responsive + taille maîtrisée sur desktop */
+.img-wrap img {
+  display: block;
+  height: auto;
+  width: 100%;
+  max-width: clamp(220px, 28vw, 520px); /* ← s'adapte à l'écran, bornes min/max */
+  object-fit: contain;                  /* pas de déformation */
+}
+
+/* Texte centré dans la colonne centrale */
+.text-wrap {
+  text-align: center;  
+  line-height: 1.6;
+  font-size: clamp(1rem, 1.15rem + .2vw, 1.125rem);
+  padding: 0 0.5rem;
+}
+
+/* Responsive : on empile en dessous du lg */
+@media (max-width: 576px) {
+  .img-wrap img {
+    max-width: 70vw;
+  }
+}
+
+/* Bandeau presta */
+.presta {
+  background: var(--secondary-color);
+  color: var(--secondary-text);
+  padding: clamp(24px, 5vw, 56px) 0;
+}
+
+/* conteneur interne (largeur max) */
+.section-inner {
+  max-width: 1440px;  /* aligne avec la section précédente */
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.presta h2 {
+  text-align: center;
+  margin: 0 0 .5rem 0;
+  font-weight: 600;
+  color : white;
+}
+
+.subtitle {
+  text-align: center;
+  margin: 0 0 1.25rem 0;
+  color : white;
+  font-size: 20px;
+}
+
+/* Grille 6 colonnes sur grands écrans */
+.presta-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: clamp(12px, 2vw, 24px);
+  align-items: start;
+  justify-items: center;
+  padding-top: .5rem;
+  list-style: none;
+}
+
+.presta-item figure {
+  margin: 0;
+  display: grid;
+  gap: .5rem;
+  place-items: center;
+  text-align: center;
+}
+
+.presta-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: clamp(120px, 13vw, 200px); /* responsive, un peu généreux */
+  object-fit: contain;
+  transition: transform .2s ease;
+}
+
+.presta-item:hover img { transform: translateY(-3px); }
+
+.presta-item figcaption {
+  font-family: 'Baloo 2', sans-serif;
+  font-size: 1.5rem;
+  color : white;
+}
+
+/* Responsiveness : 3 colonnes puis 2 colonnes */
+@media (max-width: 1200px) {
+  .presta-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 640px) {
+  .presta-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Bandeau Photobooth */
+.photobooth {
+  background: var(--primary-color);
+  color: var(--primary-text);
+  padding: clamp(24px, 5vw, 56px) 0;
+}
+
+.photobooth h2 {
+  text-align: center;
+  margin: 0 0 .5rem 0;
+  font-weight: 600;
+  color : white
+}
+
+.photobooth .subtitle {
+  text-align: center;
+  margin: 0 0 1.25rem 0;
+  color : white;
+  font-size: 20px;
+}
+
+/* Grille d’images : 6 → 3 → 2 */
+.pb-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: clamp(12px, 2vw, 24px);
+  align-items: center;
+  justify-items: center;
+}
+
+.pb-grid > li { list-style: none; }
+.pb-grid > li::marker { content: ''; }
+
+/* Vignettes sans figcaption */
+.pb-grid img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: clamp(120px, 13vw, 200px);
+  object-fit: contain;
+  transition: transform .2s ease;
+}
+
+.pb-grid img:hover { transform: translateY(-6px); }
+
+/* Breakpoints */
+@media (max-width: 1200px) {
+  .pb-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 640px) {
+  .pb-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Bandeau citation */
+.quote {
+  background: var(--secondary-color);
+  padding: clamp(24px, 5vw, 56px) 0;
+}
+
+.quote-text {
+  margin: 0 auto;
+  max-width: 900px;
+  text-align: center;
+  font-style: italic;
+  line-height: 1.6;
+  font-weight: 400;
+  font-size: clamp(1.1rem, 2.4vw, 1.6rem);
+  color : white;
+}
+
+.quote-text footer {
+  margin-top: .75rem;
+  opacity: .85;
+  font-style: normal;
+  font-size: clamp(.95rem, 1.8vw, 1.1rem);
+  color : white;
+}
+
+/* Bandeau CTA */
+.cta {
+  background: var(--primary-color);
+  color: #fff;                     
+  text-align: center;
+  padding: clamp(24px, 5vw, 56px) 0;
+}
+
+/* Bouton contact */
+.btn-contact {
+  display: inline-block;
+  margin-top: 0.75rem;
+  padding: 10px 22px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: var(--secondary-color);
+  color: #fff;                     
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .2s ease, transform .1s ease, box-shadow .2s ease;
+}
+
+.btn-contact2 {
+  display: inline-block;
+  margin-top: 0.75rem;
+  padding: 10px 22px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: var(--primary-color);
+  color: #fff;                     
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .2s ease, transform .1s ease, box-shadow .2s ease;
+  
+}
+
+.btn-contact:hover {
+  background: var(--secondary-dark);  
+  transform: translateY(-1px);
+}
+
+.btn-contact:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255,255,255,.35); 
+}
+
+/* Réduit l'espace entre la grille Photobooth et son CTA */
+.photobooth { padding-bottom: 0; }
+.photobooth + .cta { padding-top: 6px; }           
+.photobooth + .cta .btn-contact { margin-top: 38px; } 

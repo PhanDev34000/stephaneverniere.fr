@@ -2,10 +2,12 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { authGuard } from './core/auth.guard';
 import { adminGuard } from './core/admin.guard';
+import { SplashIntroComponent } from './splash-intro/splash-intro.component';
 
 export const routes: Routes = [
+  { path: '', component: SplashIntroComponent, pathMatch: 'full' }, 
   {
-    path: '',
+    path: 'accueil',
     title: 'Accueil',
     loadComponent: () =>
       import('./pages/accueil/accueil.component').then(m => m.AccueilComponent),
@@ -44,9 +46,6 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/admin/admin.component').then(m => m.AdminComponent),
   },
-  { path: 'mon-espace', redirectTo: 'telechargements', pathMatch: 'full' },
-
   
-
   { path: '**', redirectTo: '' }
 ];

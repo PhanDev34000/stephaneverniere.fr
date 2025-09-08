@@ -1,0 +1,239 @@
+.bandeau-img {
+  display: block;     /* enlève l’espace blanc sous l’image */
+  width: 100%;        /* prend toute la largeur dispo */
+  height: auto;       /* garde le ratio d’origine, pas de “grossissement” */
+  max-width: 100%;
+}
+
+.presentation {
+  background: var(--primary-color);
+  color: white;
+  padding: clamp(24px, 5vw, 56px) 0;   
+}
+
+
+
+.presentation p { 
+  text-align: center;  
+  line-height: 1.6;
+  font-size: clamp(1rem, 1.15rem + .2vw, 1.125rem);
+  padding: 0 0.5rem;
+  color: white;
+}
+
+/* Contrainte de largeur à l’intérieur du full-bleed */
+.presentation__inner {
+  max-width: 1440px;   
+  margin: 0 auto;
+  padding: 0 1rem;   
+}
+
+.presentation h2 {
+  padding-bottom: 20px;
+  text-align: center;  
+  font-weight: 600;
+}
+
+.prestations,
+.prestation {   
+  color : white;
+}
+
+                                         /*   Caroussel  */
+
+/* utilitaire full-bleed  */
+.full-bleed {
+  width: 100vw;
+}
+
+
+/* titre H2 centré */
+.presentation_title {
+  text-align: center;
+  font-weight: 600;  
+  padding-top: 15px;
+  margin-bottom: 0; 
+  padding-bottom: 15px;
+  background: var(--secondary-color);
+  width: 100vw;   
+  margin-left: calc(-50vw + 50%); 
+}
+
+.presentation_title2 {
+  text-align: center;
+  font-weight: 600;  
+  padding-top: 15px;
+  margin-bottom: 0; 
+  padding-bottom: 15px;
+  background: var(--primary-color);
+  width: 100vw;   
+  margin-left: calc(-50vw + 50%); 
+}
+
+                                             /* Cadres  */
+
+ /* Fond primary pour tout le bandeau */
+.pb-banner {
+  background : var(--primary-color);
+  padding: 2rem 1rem;
+  color: #fff; 
+  margin-bottom: 0;
+   width: 100vw;   
+  margin-left: calc(-50vw + 50%);   
+}
+
+/* Grille responsive simple : 1 colonne -> 2 colonnes */
+.pb-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Cadres */
+.pb-card {
+  border: 3px solid var(--secondary-color); 
+  border-radius: 14px;
+  padding: 1.25rem 1rem;
+  background: var(--secondary-color);  
+}
+
+.pb-title {
+  margin: 0 0 0.75rem 0;
+  font-weight: 600;  
+  color: var(--primary-color);
+  text-align: center;
+}
+
+/* Liste non ordonnée avec tirets "–" */
+.dash-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+
+  li {
+    position: relative;
+    padding-left: 1.2rem;
+    line-height: 1.5;
+    margin: 0.35rem 0;
+    font-size: 20px;
+
+    &::before {
+      content: "–";
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+}
+
+.dash-list2 {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  text-align: center;
+
+  li {
+    position: relative;
+    padding-left: 1.2rem;
+    line-height: 1.5;
+    margin: 0.35rem 0;
+    font-size: 20px;
+  }
+}
+
+/* Bandeau "Les +" dans la continuité (même fond, sans espace) */
+.pb-banner--plus {
+  background: var(--primary-color);
+  padding-top: 1rem;   /* aligne visuellement avec le dessus */
+}
+
+/* Conteneur centré et plus étroit pour un seul cadre */
+.pb-single {
+  max-width: 800px;     /* ajuste à 600–900px selon ton goût */
+  margin: 0 auto;
+  padding: 0 1rem;      /* respiration latérale sur mobile */
+}
+
+
+                                                /* Formulaire  */
+/* Bandeau du formulaire */
+.pb-reservation {
+  background: var(--primary-color);
+  color: #fff;
+  padding: 2rem 0;
+
+  /* Full-bleed sans bandes ni overflow */
+  box-shadow: 0 0 0 100vmax var(--primary-color);
+  clip-path: inset(0 -100vmax);
+}
+.container.pb-reservation {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+form {
+  border: 2px solid white;
+  padding: 2rem;        
+  border-radius: 8px;
+}
+
+
+/* Titres centrés */
+.pb-reservation h1,
+.pb-reservation h4 {
+  text-align: center;
+  margin: 0 0 1rem;
+  color: #fff;
+}
+
+/* Réduire la largeur du formulaire */
+.pb-reservation form {
+  max-width: 1000px; /* ajuste à ton goût (ex: 760px) */
+  margin: 0 auto;
+}
+
+/* Inputs et selects en blanc */
+.pb-reservation .form-control,
+.pb-reservation .form-select,
+.pb-reservation textarea {
+  background: #fff;
+  color: #222;
+  border: 1px solid #e5e5e5;
+}
+
+.pb-reservation .form-control:focus,
+.pb-reservation .form-select:focus,
+.pb-reservation textarea:focus {
+  border-color: var(--secondary-color);
+  outline: 0;
+  box-shadow: none;
+}
+
+/* Boutons centrés + en secondary */
+.pb-reservation form .d-flex {
+  justify-content: center;
+}
+
+.pb-reservation .btn.btn-primary {
+  background: var(--secondary-color);
+  border-color: var(--secondary-color);
+}
+.pb-reservation .btn.btn-primary:hover {
+  filter: brightness(0.95);
+}
+
+.pb-reservation .btn.btn-outline-secondary {
+  color: var(--secondary-color);
+  border-color: var(--secondary-color);
+  background: transparent;
+}
+.pb-reservation .btn.btn-outline-secondary:hover {
+  background: var(--secondary-color);
+  color: #fff;
+}

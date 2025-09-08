@@ -1,1 +1,66 @@
-/* You can add global styles to this file, and also import other style files */
+html, body { margin: 0; }
+body { overflow-x: hidden; } /* évite toute barre de scroll horizontale */
+
+/* Titres */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Fredoka', sans-serif;
+}
+
+/* Paragraphes */
+body, p, span, li {
+  font-family: 'Baloo 2', sans-serif;
+}
+
+/*  Couleur   */
+:root {
+  --primary-color: #073B4C;
+  --secondary-color: #AFD1B1;
+  --tertary-color : #13A3D4;
+  /* Variantes */
+  --primary-light: #0D5C70;
+  --primary-bg: #E1EBEE;  
+
+  --secondary-dark: #059B77;
+  --secondary-light: #B9F6E3;  
+}
+
+
+/* Header / Navbar */
+header, nav {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* Boutons principaux */
+button, .btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover, .btn-primary:hover {
+  background-color: var(--tertary-color);
+}
+
+/* Liens actifs */
+a {
+  color: var(--secondary-color);
+}
+
+a:hover {
+  color: var(--primary-color);
+}
+
+
+/*  Bandeau  */
+.full-bleed {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}

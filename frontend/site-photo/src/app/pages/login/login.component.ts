@@ -25,19 +25,19 @@ export class LoginComponent {
     this.loading = true;
 
     this.auth.login(this.identifiant, this.password).subscribe({
-      next: (res) => {
-        this.auth.saveAuth(res);
-        // Redirection selon le rôle
-        if (res.role === 'admin') {
-          this.router.navigateByUrl('/admin');
-        } else {
-          this.router.navigateByUrl('/mon-espace');
-        }
-      },
-      error: (err) => {
-        this.error = err?.error?.error || 'Identifiants invalides';
-        this.loading = false;
-      }
+    next: (res: any) => {
+  this.auth.saveAuth(res);     // stocke token + rôle (quel que soit le format back)
+  this.loading = false;
+
+  const role = this.auth.getRole();
+  this.router.navigateByUrl(role === 'admin' ? '/admin' : '/mon-espace');
+},
+
+error: (err) => {
+  this.error = err?.error?.error || 'Identifiants invalides';
+  this.loading = false;
+}
+
     });
   }
 }

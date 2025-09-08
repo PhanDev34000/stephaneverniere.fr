@@ -8,7 +8,8 @@ import { HttpErrorResponse } from '@angular/common/http';
   selector: 'app-telechargements',
   imports: [CommonModule],
   providers: [DatePipe],
-  templateUrl: './telechargements.component.html'
+  templateUrl: './telechargements.component.html',
+  styleUrls: ['./telechargements.component.scss']
 })
 export class TelechargementsComponent {
   private api = inject(GalleriesService);

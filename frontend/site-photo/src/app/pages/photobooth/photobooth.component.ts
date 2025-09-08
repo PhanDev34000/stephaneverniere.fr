@@ -3,16 +3,19 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { PhotoboothService, PhotoboothReservationDto } from '../../services/photobooth.service';
+import { FilmStrip2Component } from '../../component/film-strip2/film-strip2.component';
+import { FaqComponent } from '../../component/faq/faq.component';
 
 @Component({
   standalone: true,
   selector: 'app-photobooth',
-  imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './photobooth.component.html'
+  imports: [CommonModule, ReactiveFormsModule, FilmStrip2Component, FaqComponent],
+  templateUrl: './photobooth.component.html',
+  styleUrls: ['./photobooth.component.scss']
 })
 export class PhotoboothComponent {
   private fb = inject(FormBuilder);
-  private photoboothApi = inject(PhotoboothService); // (ex- this.api)
+  private photoboothApi = inject(PhotoboothService); 
 
   today = new Date().toISOString().slice(0, 10);
   loading = signal(false);

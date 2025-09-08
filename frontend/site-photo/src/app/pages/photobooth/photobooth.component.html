@@ -1,6 +1,105 @@
-<div class="container py-4">
+<!--    1ere image    -->
+<section class="bandeau full-bleed">
+  <img
+    src="assets/bandeau/booth.png"
+    alt="Bandeau d’introduction"
+    class="bandeau-img"
+    loading="eager"
+  />
+</section>
+<!--    Présentation    -->
+<section class="presentation full-bleed">
+  <div class="container">
+    <h2>Présentation</h2>
+    <p>Mon <strong>Photobooth</strong> est une pièce maîtresse <strong>élégante et authentique</strong>, entièrement fabriquée <strong>en chêne massif</strong>. Sa beauté naturelle et sa qualité artisanale en font un ajout exceptionnel à n'importe quel événement. Il est conçu pour se fondre harmonieusement dans l'atmosphère de votre soirée, ajoutant une touche de classe et de sophistication.<br> Lorsque vous choisissez ce Photobooth, vous choisissez bien plus qu'une simple animation. C'est une <strong>expérience</strong> interactive qui divertira vos invités et leur permettra de créer des souvenirs inoubliables. Ils pourront se prendre en photo de manière ludique et créative, repartant avec des clichés qui immortaliseront les moments spéciaux de votre événement.<br> Que ce soit lors d'un mariage, d'une fête d'entreprise, d'un anniversaire ou de tout autre rassemblement, ce Photobooth apportera une dimension unique et amusante à l'occasion. C'est une manière parfaite de créer des souvenirs et de laisser une empreinte mémorable à tous vos invités.<br> N'hésitez pas à me contacter pour réserver ce Photobooth et ajouter une touche d'authenticité et d'élégance à votre prochain événement. Vos invités seront enchantés de cette expérience et repartiront avec des souvenirs inestimables.</p>
+  </div>
+</section>
+<!-- Caroussels -->
+
+<!-- Titre global -->
+<section class="prestations full-bleed">
+  <div class="container">
+    <h2 class="presentation_title">Photobooth en action...</h2>
+  </div>
+</section>
+
+<!-- Diapo -->
+<section class="prestation full-bleed ">  
+  <app-film-strip2
+  [folder]="'booth'"
+  [limit]="40"
+  [shuffle]="true"
+  [widthPercent]="90"
+  [background]="'secondary'"
+  style="--strip-h: 250px">
+</app-film-strip2>
+</section>
+
+<!--  Bandeau avec Cadres -->
+<section class="prestations full-bleed">
+  <div class="container">
+    <h2 class="presentation_title2">Détails d'une location</h2>
+  </div>
+    <div class="pb-banner">
+      <div class="pb-container">
+        <!-- Cadre gauche -->
+        <div class="pb-card">
+          <h3 class="pb-title">Inclus à une location</h3>
+          <ul class="dash-list">
+            <li>Photobooth au design unique (artisan français)</li>
+            <li>Kit papier 400 tirages 10x15 + mail illimité</li>
+            <li>Personnalisation des écrans de la borne</li>
+            <li>Personnalisation des compositions photos</li>
+            <li>6 filtres photos disponibles</li>
+            <li>Impression et envoi par mail</li>
+            <li>Récupération de l'ensemble des photos après prestation</li>
+          </ul>
+        </div>
+
+    <!-- Cadre droit -->
+    <div class="pb-card">
+      <h3 class="pb-title">Matériels de la borne</h3>
+      <ul class="dash-list">
+        <li>Appareil photo reflex Canon</li>
+        <li>Imprimante professionnelle intégrée (8 sec/photo)</li>
+        <li>Ecran tactile 19"</li>
+        <li>Tirage sur papier Premium finition brillant</li>
+        <li>Lumiére et flash intégrés</li>
+        <li>Nécessite 1m² au sol et une prise électrique</li>
+      </ul>
+    </div>
+  </div>
+  </div>
+</section>
+<!-- Bandeau Les + -->
+<section class="prestations full-bleed">
+  <div class="pb-banner pb-banner--plus">
+    <div class="pb-single">
+      <div class="pb-card">
+        <h3 class="pb-title">Les +</h3>
+        <ul class="dash-list2">
+          <li>Facilité d'utilisation, intuitive</li>
+          <li>Borne photo tactile au design élégant</li>
+          <li>Vitesse d'impression</li>
+          <li>Personnalisation des écrans et compositions photos</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!--   FAQ  -->
+<app-faq></app-faq>
+
+
+
+
+<!-- Formulaire  -->
+ <section class="pb-reservation-wrap">
+<div class="container py-4 pb-reservation">
   <h1 class="mb-3">Demande de réservation du Photobooth</h1>
-  <h4 class="text-muted mb-4">Remplissez le formulaire ci-dessous.</h4>
+  <h4 class="mb-4">Remplissez le formulaire ci-dessous.</h4>
 
   @if (success()) {
     <div class="alert alert-success" role="alert">{{ success() }}</div>
@@ -67,3 +166,4 @@
     </div>
   </form>
 </div>
+</section>

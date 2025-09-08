@@ -1,0 +1,85 @@
+/* Conteneur */
+.faq2 {
+ 
+  margin: 0 auto;
+  padding: 1rem;
+  background: var(--primary-color);
+  margin-inline: calc(50% - 50vw);
+  padding-inline: calc(50vw - 50%);
+   margin-top: 0;
+}
+
+/* Titre */
+.faq2__title {
+  text-align: center;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  color: white;
+}
+
+/* Liste / item */
+.faq2__list {
+  display: grid;
+  gap: 0.75rem; 
+  text-align: center;
+  justify-content: center;
+}
+
+.faq2__item {
+  border: 2px solid var(--secondary-color);
+  border-radius: 12px;
+  background: white; 
+  overflow: hidden;
+  width:75vw;
+}
+
+/* Question (summary) */
+.faq2__question {
+  list-style: none;
+  cursor: pointer;
+  padding: 0.9rem 3rem 0.9rem 1rem;
+  position: relative;
+  font-weight: 600;
+  color: var(--primary-color);
+  user-select: none;
+}
+
+/* supprime le chevron natif */
+.faq2__question::-webkit-details-marker {
+  display: none;
+}
+
+/* Icône + / – à droite */
+.faq2__question::after {
+  content: "+";
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: 700;
+}
+
+/* État ouvert */
+.faq2__item[open] .faq__question::after {
+  content: "–";
+}
+
+/* Réponse */
+.faq2__answer {
+  padding: 0 1rem 1rem 1rem;
+  color: #333;
+  animation: faqFade 180ms ease;
+}
+
+/* Petites améliorations : hover/focus */
+.faq2__item:hover .faq__question,
+.faq2__question:focus {
+  background: rgba(0,0,0,0.03);
+  outline: none;
+}
+
+@keyframes faqFade {
+  from { opacity: 0; transform: translateY(-2px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+

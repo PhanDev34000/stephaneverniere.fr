@@ -1,0 +1,58 @@
+/* Fond et couleurs */
+.film-strip2 {
+  background: var(--primary-color);
+  color: #fff;
+  padding: 12px 0 30px;
+}
+.film-strip2--secondary { background: var(--secondary-color); }
+.film-strip2--primary   { background: var(--primary-color); }
+
+/* Conteneur centré et CONTRÔLÉ en largeur (par défaut 80%) */
+.inner {
+  position: relative;
+  margin: 0 auto;          /* centre */
+  max-width: none;         /* pas de limite fixe */
+  padding: 0 48px;         /* gouttières pour les flèches */
+}
+
+/* Rail horizontal */
+.rail {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
+  gap: 8px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+.rail::-webkit-scrollbar { display: none; }
+
+.rail img {
+  height: var(--strip-h, 240px);
+  width: auto;
+  object-fit: cover;
+  border-radius: 6px;
+  scroll-snap-align: start;
+  display: block;
+}
+
+/* Navigation */
+.nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(0,0,0,.35);
+  color: #fff;
+  cursor: pointer;
+
+  display: flex; align-items: center; justify-content: center;
+  line-height: 1; padding: 0; font-size: 22px;
+}
+.nav:hover { background: rgba(0,0,0,.5); }
+.nav.prev { left: 6px; }
+.nav.next { right: 6px; }
+
+

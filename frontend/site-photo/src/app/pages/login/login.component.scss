@@ -1,0 +1,60 @@
+.login-form {
+  background: var(--primary-color);
+  color: #fff;
+  padding-top: 1vh;
+  padding-bottom: 8vh;
+  box-shadow: 0 0 0 100vmax var(--primary-color);
+  clip-path: inset(0 -100vmax);
+}
+
+form {
+  border: 2px solid white;
+  padding: 2rem;        
+  border-radius: 8px;
+}
+
+/* Titre centré et blanc */
+.login-form h1 {
+  text-align: center;
+  color: #fff;
+  margin: 0 0 1rem;
+}
+
+/* Largeur contenue */
+.login-form form {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* Champs blancs */
+.login-form .form-control,
+.login-form textarea,
+.login-form .form-select {
+  background: #fff;
+  color: #222;
+  border: 1px solid #e5e5e5;
+}
+.login-form .form-control:focus,
+.login-form .form-select:focus,
+.login-form textarea:focus {
+  border-color: var(--secondary-color);
+  outline: 0;
+  box-shadow: none;
+}
+
+/* Aide lisible sur fond primary */
+.login-form .form-text { color: rgba(255,255,255,.85); }
+
+/* Bouton en secondary */
+.login-form .btn.btn-primary {
+  background: var(--secondary-color);
+  border-color: var(--secondary-color);
+}
+.login-form .btn.btn-primary:hover { filter: brightness(0.95); }
+
+/* Enlever le voile quand le bouton est disabled */
+.login-form .btn.btn-primary:disabled{
+  opacity: 1; /* retire l’effet grisé */
+  background: var(--secondary-color);
+  border-color: var(--secondary-color);
+}

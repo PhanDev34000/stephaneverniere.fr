@@ -8,7 +8,8 @@ import { ContactService, ContactDto } from '../../services/contact.service';
   standalone: true,
   selector: 'app-contact',
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './contact.component.html'
+  templateUrl: './contact.component.html',
+  styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent {
   private fb = inject(FormBuilder);

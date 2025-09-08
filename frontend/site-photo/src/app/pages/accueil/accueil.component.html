@@ -1,4 +1,144 @@
-<div class="container">
-  <h1 class="text-primary">Hello Bootstrap 🚀</h1>
-  <button class="btn btn-success">Un bouton vert</button>
-</div>
+<!--    1ere image    -->
+<section class="bandeau full-bleed">
+  <img
+    src="assets/bandeau/intro.png"
+    alt="Bandeau d’introduction"
+    class="bandeau-img"
+    loading="eager"
+  />
+</section>
+
+<!--    Présentation    -->
+<section class="presentation full-bleed">
+  <div class="presentation__inner">
+    <h2>Présentation</h2>
+
+    <div class="presentation-grid">
+      <div class="img-wrap">
+        <img class="bandeau-img img-fluid" src="assets/images/sv.png" alt="Portrait de Stéphane Vernière" />
+      </div>
+
+      <div class="text-wrap">
+        <p>Je suis un photographe passionné, fort <strong>d'une vingtaine années d'expérience</strong> dans le domaine.<br> Mon parcours m'a conduit à devenir un <strong>photographe indépendant</strong>, tout en collaborant avec de nombreuses <Strong>agences à Paris</Strong>.<br>
+          Au fil des années, j'ai acquis une diversité d'expériences, mais mes spécialités résident principalement dans la <strong>photographie de reportages, l'événementiel et l'institutionnel</strong>.<br>
+          Que vous soyez un <strong>professionnel</strong> à la recherche d'images percutantes pour votre entreprise ou un <strong>particulier</strong> souhaitant capturer des moments précieux, je suis là pour <strong>répondre à vos besoins</strong>.<br>
+          De plus, pour enrichir mes services, j'ai créé mon propre <strong>Photobooth</strong>, que je mets à votre disposition en location pour animer vos soirées et événements spéciaux.<br>
+          Basé dans la magnifique région de Montpellier, je suis prêt à travailler avec vous pour concrétiser <strong>votre projet photographique</strong>.<br>
+      </div>
+
+      <div class="img-wrap">
+        <img class="bandeau-img img-fluid" src="assets/images/App.png" alt="Matériel photo" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--   Carousel   -->
+  <app-film-strip
+    [folder]="'prestations'"
+    [limit]="40"
+    [shuffle]="true"
+    title=""
+    style="--strip-h: 200px">
+  </app-film-strip>
+
+
+
+<!--    Photographe    -->
+<section class="presta full-bleed">
+  <div class="section-inner">
+    <h2>Photographe</h2>
+    
+    <p class="subtitle">
+      Portraits, événements, mode, institutionnel, mariages… des prestations pensées pour mettre vos projets en valeur !
+    </p>
+
+    <ul class="presta-grid" role="list">
+      <li class="presta-item">
+        <figure>
+          <img class="img-fluid" src="assets/presta/book.png" alt="Prestation Book" loading="lazy">
+          <figcaption>Book</figcaption>
+        </figure>
+      </li>
+      <li class="presta-item">
+        <figure>
+          <img class="img-fluid" src="assets/presta/culinaire.png" alt="Prestation Culinaire" loading="lazy">
+          <figcaption>Packshot</figcaption>
+        </figure>
+      </li>
+      <li class="presta-item">
+        <figure>
+          <img class="img-fluid" src="assets/presta/event.png" alt="Prestation Événement" loading="lazy">
+          <figcaption>Événement</figcaption>
+        </figure>
+      </li>      
+      <li class="presta-item">
+        <figure>
+          <img class="img-fluid" src="assets/presta/institutionnel.png" alt="Prestation Institutionnel" loading="lazy">
+          <figcaption>Institutionnel</figcaption>
+        </figure>
+      </li>
+      <li class="presta-item">
+        <figure>
+          <img class="img-fluid" src="assets/presta/mariage.png" alt="Prestation Mariage" loading="lazy">
+          <figcaption>Mariage</figcaption>
+        </figure>
+      </li>
+      <li class="presta-item">
+        <figure>
+          <img class="img-fluid" src="assets/presta/fashion.png" alt="Prestation Fashion" loading="lazy">
+          <figcaption>Divers</figcaption>
+        </figure>
+      </li>
+    </ul>
+  </div>
+  <button class="btn-contact2 d-block mx-auto" type="button" routerLink="/photographe">
+      En savoir plus !
+    </button>
+</section>
+
+<!--    Photobooth    -->
+<section class="photobooth full-bleed">
+  <div class="section-inner">
+    <h2>Photobooth</h2>
+    <p class="subtitle">
+      Animation clé en main, impressions immédiates, partage digital, idéal pour tous vos événements !
+    </p>
+    <ul class="pb-grid" role="list">
+      <li><img class="img-fluid" src="assets/presta/Pb1.png" alt="Photobooth – exemple 1" loading="lazy"></li>
+      <li><img class="img-fluid" src="assets/presta/Pb2.png" alt="Photobooth – exemple 2" loading="lazy"></li>
+      <li><img class="img-fluid" src="assets/presta/Pb3.png" alt="Photobooth – exemple 3" loading="lazy"></li>
+      <li><img class="img-fluid" src="assets/presta/Pb4.png" alt="Photobooth – exemple 4" loading="lazy"></li>
+      <li><img class="img-fluid" src="assets/presta/Pb5.png" alt="Photobooth – exemple 5" loading="lazy"></li>
+      <li><img class="img-fluid" src="assets/presta/Pb6.png" alt="Photobooth – exemple 6" loading="lazy"></li>
+    </ul>
+  </div>
+  </section>
+   <section class="cta full-bleed">
+      <div class="section-inner">
+        <button class="btn-contact" type="button" routerLink="/photobooth">
+            En savoir plus !
+        </button>
+      </div>
+</section>
+
+
+<!--    citation    -->
+<section class="quote full-bleed">
+  <div class="section-inner">
+    <blockquote class="quote-text">
+      « Au fond, ce n'est pas la photo en soi qui m'intéresse. Ce que je veux, c'est capter une fraction de seconde du réel »
+      <footer>— Henri Cartier-Bresson</footer>
+    </blockquote>
+  </div>
+</section>
+
+<!-- Contactez-moi  -->
+ <section class="cta full-bleed">
+  <div class="section-inner">
+    <h2>Pour plus d'infos, contactez-moi !</h2>
+    <button class="btn-contact" type="button" routerLink="/contact">
+      Contact
+    </button>
+  </div>
+</section>
