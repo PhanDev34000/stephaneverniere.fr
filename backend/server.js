@@ -1,4 +1,3 @@
-// backend/server.js
 require('dotenv').config();
 
 const express = require('express');
@@ -17,7 +16,7 @@ const adminGalleriesRoutes = require('./src/routes/admin-galleries.routes');
 const contactRoutes        = require('./src/routes/contact.routes');
 const photoboothRoutes     = require('./src/routes/photobooth.routes');
 const downloadRoutes       = require('./src/routes/download.routes');
-
+const photosRoutes         = require('./src/routes/photos.routes');
 
 const app = express();
 
@@ -30,12 +29,17 @@ app.use(helmet({
 
 const allowedOrigin = process.env.FRONT_ORIGIN || 'http://localhost:4200';
 app.use(cors({
-  origin: allowedOrigin,
+  origin: "https://stephaneverniere.fr",
   credentials: true,
   methods: ['GET','HEAD','PUT','PATCH','POST','DELETE'],
 }));
 
 app.use(express.json({ limit: '10mb' }));
+
+// === PUBLIC ===
+app.use('/api/photos', photosRoutes);   // ← AVANT l'auth
+
+
 
 // ---------- Rate limiters ciblés (avant montage des routes) ----------
 app.use('/api/auth/login', loginLimiter);
@@ -57,7 +61,11 @@ app.use('/api', contactRoutes);
 app.use('/api', photoboothRoutes);
 
 // routes protégées (client/admin)
-app.use('/api', requireAuth, downloadRoutes);
+app.use('/api', (req, res, next) => {
+  if (req.path.startsWith('/photos')) return next(); // pas d'auth pour /api/photos
+  return requireAuth(req, res, next);
+}, downloadRoutes);
+
 
 // ---------- Handler d’erreurs ----------
 app.use((err, _req, res, _next) => {
@@ -67,6 +75,9 @@ app.use((err, _req, res, _next) => {
 
 // ---------- Démarrage ----------
 const PORT = process.env.PORT || 3000;
+
+app.get('/health', (req,res)=>res.json({ ok: true }));
+
 const MONGO_URI = process.env.MONGODB_URI;
 
 if (!MONGO_URI) {
@@ -83,3 +94,5 @@ mongoose.connect(MONGO_URI)
     console.error('❌ Connexion MongoDB échouée:', err.message);
     process.exit(1);
   });
+
+  module.exports = app;
