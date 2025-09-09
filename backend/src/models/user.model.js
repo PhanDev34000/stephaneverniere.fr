@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
   // Identifiant de connexion côté client = nom de projet (unique, obligatoire)
-  identifiant: { type: String, unique: true, required: true }, // ex: "mariage-dupont-2025"
+  identifiant: { type: String, unique: true, required: true }, 
 
   // Mot de passe hashé (bcrypt)
   password: { type: String, required: true },
