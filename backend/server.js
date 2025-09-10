@@ -1,14 +1,14 @@
 require('dotenv').config();
 
-const express = require('express');
+const express  = require('express');
 const mongoose = require('mongoose');
-const helmet = require('helmet');
-const cors = require('cors');
+const helmet   = require('helmet');
+const cors     = require('cors');
 
 const { loginLimiter, contactLimiter, photoboothLimiter } = require('./src/middlewares/rateLimiters');
 const requireAdmin = require('./src/middlewares/requireAdmin');
 const requireAuth  = require('./src/middlewares/requireAuth');
-const authRoutes = require('./src/routes/auth.routes');
+const authRoutes   = require('./src/routes/auth.routes');
 
 // --- Routes
 const adminClientsRoutes   = require('./src/routes/admin-clients.routes');
@@ -27,19 +27,25 @@ app.use(helmet({
   crossOriginResourcePolicy: false,
 }));
 
-const allowedOrigin = process.env.FRONT_ORIGIN || 'http://localhost:4200';
-app.use(cors({
-  origin: "https://stephaneverniere.fr",
-  credentials: true,
-  methods: ['GET','HEAD','PUT','PATCH','POST','DELETE'],
-}));
+const allowedOrigin = process.env.FRONT_ORIGIN || 'https://stephaneverniere.fr';
+
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', allowedOrigin);
+  res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(200);
+  }
+
+  next();
+});
 
 app.use(express.json({ limit: '10mb' }));
 
 // === PUBLIC ===
 app.use('/api/photos', photosRoutes);   // ← AVANT l'auth
-
-
 
 // ---------- Rate limiters ciblés (avant montage des routes) ----------
 app.use('/api/auth/login', loginLimiter);
@@ -65,7 +71,6 @@ app.use('/api', (req, res, next) => {
   if (req.path.startsWith('/photos')) return next(); // pas d'auth pour /api/photos
   return requireAuth(req, res, next);
 }, downloadRoutes);
-
 
 // ---------- Handler d’erreurs ----------
 app.use((err, _req, res, _next) => {
