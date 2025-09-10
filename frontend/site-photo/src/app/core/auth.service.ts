@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+import { throwError } from 'rxjs';
+import { signInWithEmailAndPassword, getAuth, signOut } from 'firebase/auth';
+import { from, map, switchMap } from 'rxjs';
+
 
 type LoginResponse =
   | { token: string; role: 'admin' | 'utilisateur' }
@@ -10,12 +15,26 @@ export class AuthService {
   private api = '/api/auth';
   private storageKey = 'sv_token';
   private roleKey = 'sv_role';
+  private admins = ['vernierestephane@gmail.com'];
 
   constructor(private http: HttpClient) {}
 
-  login(identifiant: string, password: string) {
-  // on accepte les 2 formats côté back
-  return this.http.post<any>(`${this.api}/login`, { identifiant, password });
+  login(email: string, password: string) {
+  const auth = getAuth();
+  return from(signInWithEmailAndPassword(auth, email, password)).pipe(
+    switchMap(cred => from(cred.user.getIdToken()).pipe(
+      map(token => {
+        // Détermine le rôle côté front (simple) selon l'email
+        const role: 'admin' | 'utilisateur' =
+          this.admins.includes((cred.user.email || '').toLowerCase())
+            ? 'admin' : 'utilisateur';
+
+        // Réutilise ta logique de stockage existante
+        this.saveAuth({ token, role });
+        return { user: cred.user, role };
+      })
+    ))
+  );
 }
 
   saveAuth(res: any) {
@@ -31,7 +50,6 @@ export class AuthService {
       }
       if (role) localStorage.setItem(this.roleKey, role);
     }
-
 
   getToken(): string | null {
     return localStorage.getItem(this.storageKey);
@@ -53,7 +71,6 @@ export class AuthService {
   return null;
 }
 
-
   isLoggedIn(): boolean {
     return !!this.getToken();
   }
@@ -63,7 +80,9 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem(this.storageKey);
-    localStorage.removeItem(this.roleKey);
-  }
+  localStorage.removeItem(this.storageKey);
+  localStorage.removeItem(this.roleKey);
+  return from(signOut(getAuth()));
+}
+
 }

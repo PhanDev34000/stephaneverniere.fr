@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface Client {
   _id: string;
@@ -25,20 +26,45 @@ export interface UpdateClientDto {
 export class ClientsService {
   constructor(private http: HttpClient) {}
 
-  list(): Observable<Client[]> {
-    return this.http.get<Client[]>('/api/admin/clients');
-  }
-  create(dto: CreateClientDto): Observable<Client> {
-    return this.http.post<Client>('/api/admin/clients', dto);
-  }
-  update(id: string, dto: UpdateClientDto): Observable<Client> {
-    return this.http.put<Client>(`/api/admin/clients/${id}`, dto);
-  }
-  delete(id: string): Observable<void> {
-    return this.http.delete<void>(`/api/admin/clients/${id}`);
-  }
-  updatePassword(id: string, password: string) {
-    return this.http.put<void>(`/api/admin/clients/${id}/password`, { password });
+  list() {
+    if (environment.DISABLE_BACKEND) {
+      return of([] as Client[]);
+    }
+    return this.http.get<Client[]>(`${environment.API_BASE}/admin/clients`);
   }
 
+  listClients() {
+    if (environment.DISABLE_BACKEND) {
+      return of([] as Client[]);
+    }
+    return this.http.get<Client[]>(`${environment.API_BASE}/admin/clients`);
+  }
+
+  create(dto: CreateClientDto): Observable<Client> {
+    if (environment.DISABLE_BACKEND) {
+      return of({} as Client);
+    }
+    return this.http.post<Client>(`${environment.API_BASE}/admin/clients`, dto);
+  }
+
+  update(id: string, dto: UpdateClientDto): Observable<Client> {
+    if (environment.DISABLE_BACKEND) {
+      return of({} as Client);
+    }
+    return this.http.put<Client>(`${environment.API_BASE}/admin/clients/${id}`, dto);
+  }
+
+  delete(id: string): Observable<void> {
+    if (environment.DISABLE_BACKEND) {
+      return of(void 0);
+    }
+    return this.http.delete<void>(`${environment.API_BASE}/admin/clients/${id}`);
+  }
+
+  updatePassword(id: string, password: string): Observable<void> {
+    if (environment.DISABLE_BACKEND) {
+      return of(void 0);
+    }
+    return this.http.put<void>(`${environment.API_BASE}/admin/clients/${id}/password`, { password });
+  }
 }

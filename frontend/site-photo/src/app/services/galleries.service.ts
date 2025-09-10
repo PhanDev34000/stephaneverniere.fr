@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface GalleryFile {
   fileId: string;
@@ -39,30 +40,34 @@ export class GalleriesService {
 
   // --- Admin ---
   list(): Observable<Gallery[]> {
-    return this.http.get<Gallery[]>('/api/admin/galleries');
+    return this.http.get<Gallery[]>(`${environment.API_BASE}/admin/galleries`);
   }
+
   create(dto: CreateGalleryDto): Observable<Gallery> {
-    return this.http.post<Gallery>('/api/admin/galleries', dto);
+    return this.http.post<Gallery>(`${environment.API_BASE}/admin/galleries`, dto);
   }
+
   uploadFiles(galleryId: string, files: File[]): Observable<Gallery> {
     const form = new FormData();
     files.forEach(f => form.append('files', f));
-    return this.http.post<Gallery>(`/api/admin/galleries/${galleryId}/files`, form);
+    return this.http.post<Gallery>(`${environment.API_BASE}/admin/galleries/${galleryId}/files`, form);
   }
+
   update(id: string, dto: UpdateGalleryDto): Observable<Gallery> {
-    return this.http.put<Gallery>(`/api/admin/galleries/${id}`, dto);
+    return this.http.put<Gallery>(`${environment.API_BASE}/admin/galleries/${id}`, dto);
   }
+
   delete(id: string): Observable<void> {
-    return this.http.delete<void>(`/api/admin/galleries/${id}`);
+    return this.http.delete<void>(`${environment.API_BASE}/admin/galleries/${id}`);
   }
 
   // --- Commun (admin + client) ---
   downloadZip(galleryId: string) {
-    return this.http.get(`/api/galleries/${galleryId}/download.zip`, { responseType: 'blob' });
+    return this.http.get(`${environment.API_BASE}/galleries/${galleryId}/download.zip`, { responseType: 'blob' });
   }
 
   // --- Client ---
   listMine(): Observable<MyGallery[]> {
-    return this.http.get<MyGallery[]>('/api/me/galleries');
+    return this.http.get<MyGallery[]>(`${environment.API_BASE}/me/galleries`);
   }
 }

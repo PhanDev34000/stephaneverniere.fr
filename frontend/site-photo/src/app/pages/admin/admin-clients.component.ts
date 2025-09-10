@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ClientsService, Client, CreateClientDto } from '../../services/clients.services';
 
+
 @Component({
   standalone: true,
   selector: 'app-admin-clients',
@@ -37,7 +38,7 @@ export class AdminClientsComponent {
   reload(): void {
     this.loading.set(true);
     this.api.list().subscribe({
-      next: (list) => { this.loading.set(false); this.clients.set(list); },
+      next: (list: any[]) => { this.loading.set(false); this.clients.set(list); },
       error: (e: HttpErrorResponse) => { this.loading.set(false); this.error.set(e?.error?.message || e.message); }
     });
   }

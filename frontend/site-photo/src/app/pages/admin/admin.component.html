@@ -1,3 +1,4 @@
+@if (!isStatic) {
 <div class="container py-4 admin" >
   <h1 class="mb-4 titre" >Administration</h1>
 
@@ -21,3 +22,8 @@
     </div>
   </div>
 </div>
+} @else {
+  <div class="alert alert-info my-3">
+    Zone admin désactivée sur cette version statique du site.
+  </div>
+}

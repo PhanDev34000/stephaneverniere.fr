@@ -1,7 +1,8 @@
 // src/app/services/photobooth.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface PhotoboothReservationDto {
   nom?: string;
@@ -18,6 +19,10 @@ export class PhotoboothService {
   constructor(private http: HttpClient) {}
 
   reserver(dto: PhotoboothReservationDto): Observable<any> {
-    return this.http.post('/api/photobooth/reserver', dto);
+    if (environment.DISABLE_BACKEND) {
+      return throwError(() => new Error('Envoi indisponible (site statique).'));
+    }
+
+    return this.http.post(`${environment.API_BASE}/photobooth/reserver`, dto);
   }
 }
