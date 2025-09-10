@@ -55,12 +55,17 @@ app.use('/api/photobooth/reserver', photoboothLimiter);
 // ---------- Health ----------
 app.get('/api/healthz', async (_req, res) => {
   try {
+    if (!mongoose.connection.db) {
+      return res.json({ ok: true, db: 'down', error: 'MongoDB not connected yet' });
+    }
+
     await mongoose.connection.db.admin().ping();
     res.json({ ok: true, db: 'up' });
   } catch (err) {
     res.json({ ok: true, db: 'down', error: err.message });
   }
 });
+
 
 
 // ---------- Routes ----------
