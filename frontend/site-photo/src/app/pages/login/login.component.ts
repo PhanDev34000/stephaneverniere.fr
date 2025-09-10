@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {  inject,Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -16,28 +16,35 @@ export class LoginComponent {
   password = '';
   loading = false;
   error: string | null = null;
+  private authService = inject(AuthService);
+
 
   constructor(private auth: AuthService, private router: Router) {}
 
   onSubmit(f: NgForm) {
-    if (f.invalid || this.loading) return;
-    this.error = null;
-    this.loading = true;
+  this.error = '';
+  if (!f.valid) { return; }
 
-    this.auth.login(this.identifiant, this.password).subscribe({
-    next: (res: any) => {
-  this.auth.saveAuth(res);     // stocke token + rôle (quel que soit le format back)
-  this.loading = false;
+  // Accepte soit "email", soit "identifiant" (ton ancien champ)
+  const email = (f.value.email || f.value.identifiant || '').trim();
+  const password = (f.value.password || '').trim();
 
-  const role = this.auth.getRole();
-  this.router.navigateByUrl(role === 'admin' ? '/admin' : '/mon-espace');
-},
-
-error: (err) => {
-  this.error = err?.error?.error || 'Identifiants invalides';
-  this.loading = false;
-}
-
-    });
+  if (!email || !password) {
+    this.error = 'Email et mot de passe requis.';
+    return;
   }
+console.log('email=', email, 'password length=', password?.length);
+
+  this.authService.login(email, password).subscribe({
+    next: () => {
+      // redirection si tu veux
+      this.router.navigateByUrl('/admin');
+    },
+    error: (e) => {
+  console.error('Firebase auth error:', e?.code, e?.message);
+  this.error = e?.message || 'Connexion impossible.';
 }
+  });
+}
+};
+

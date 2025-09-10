@@ -5,6 +5,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { PhotoboothService, PhotoboothReservationDto } from '../../services/photobooth.service';
 import { FilmStrip2Component } from '../../component/film-strip2/film-strip2.component';
 import { FaqComponent } from '../../component/faq/faq.component';
+import { map } from 'rxjs/operators';
+
 
 @Component({
   standalone: true,
@@ -21,7 +23,7 @@ export class PhotoboothComponent {
   loading = signal(false);
   success = signal<string | null>(null);
   error = signal<string | null>(null);
-
+  
   form = this.fb.group({
     nom: [''],
     prenom: [''],
@@ -31,6 +33,7 @@ export class PhotoboothComponent {
     lieu: [''],
     message: ['', Validators.required] // SEUL champ requis (ta contrainte)
   });
+
 
   submit(): void {
     this.success.set(null);
@@ -56,4 +59,6 @@ export class PhotoboothComponent {
       }
     });
   }
+
+  
 }

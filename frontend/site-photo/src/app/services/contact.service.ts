@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface ContactDto {
   nom: string;
@@ -18,6 +19,7 @@ export class ContactService {
   constructor(private http: HttpClient) {}
 
   envoyer(dto: ContactDto): Observable<any> {
-    return this.http.post('/api/contact', dto);
+    return this.http.post(`${environment.API_BASE}/contact`, dto);
+
   }
 }

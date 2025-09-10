@@ -10,7 +10,7 @@ import { PhotosService, Photo } from '../../services/photos.service';
   styleUrls: ['./film-strip.component.scss']
 })
 export class FilmStripComponent {
-  @Input({ required: true }) folder!: string;       // ex: 'prestations/Mariage' ou 'booth' ou 'prestations'
+  @Input({ required: true }) folder!: string;      
   @Input() limit = 30;
   @Input() shuffle = false;
   @Input() title = '';
