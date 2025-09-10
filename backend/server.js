@@ -53,10 +53,15 @@ app.use('/api/contact', contactLimiter);
 app.use('/api/photobooth/reserver', photoboothLimiter);
 
 // ---------- Health ----------
-app.get('/api/healthz', (_req, res) => {
-  const state = mongoose.connection.readyState === 1 ? 'up' : 'down';
-  res.json({ ok: true, db: state });
+app.get('/api/healthz', async (_req, res) => {
+  try {
+    await mongoose.connection.db.admin().ping();
+    res.json({ ok: true, db: 'up' });
+  } catch (err) {
+    res.json({ ok: true, db: 'down', error: err.message });
+  }
 });
+
 
 // ---------- Routes ----------
 app.use('/api/auth', authRoutes);
