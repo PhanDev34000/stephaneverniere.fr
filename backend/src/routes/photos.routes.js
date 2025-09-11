@@ -92,8 +92,18 @@ router.get('/by-folder', async (req, res) => {
 });
 
 router.get('/r2/ping', async (_req, res) => {
-  try { await r2.ping(); res.json({ ok: true }); }
-  catch (e) { res.status(500).json({ ok: false, error: e.message }); }
+  try {
+    await r2.ping();
+    res.json({ ok: true });
+  } catch (e) {
+    console.error('[R2 ERROR]', e); // log complet dans les logs Koyeb
+    res.status(500).json({
+      ok: false,
+      name: e.name,
+      message: e.message,
+      stack: e.stack,
+    });
+  }
 });
 
 router.get('/r2/list', async (_req, res) => {
