@@ -1,10 +1,11 @@
 const express = require('express');
 const multer = require('multer');
-const cloudinary = require('../../config/cloudinary');   // config est hors /src
-const Photo = require('../models/photo.model');          // modèle dans /src/models
+const cloudinary = require('../../config/cloudinary');   
+const Photo = require('../models/photo.model');          
 
 const router = express.Router();
 const upload = multer({ storage: multer.memoryStorage() });
+const r2 = require('../services/r2');
 
 // POST /api/photos  (upload + enregistrement DB)
 router.post('/', upload.single('file'), (req, res) => {
@@ -90,5 +91,27 @@ router.get('/by-folder', async (req, res) => {
   }
 });
 
+router.get('/r2/ping', async (_req, res) => {
+  try { await r2.ping(); res.json({ ok: true }); }
+  catch (e) { res.status(500).json({ ok: false, error: e.message }); }
+});
+
+router.get('/r2/list', async (_req, res) => {
+  try {
+    const out = await r2.list();
+    res.json({ ok: true, items: (out.Contents || []).map(o => ({ key: o.Key, size: o.Size })) });
+  } catch (e) { res.status(500).json({ ok: false, error: e.message }); }
+});
+
+router.post('/r2/upload-test', async (req, res) => {
+  try {
+    const { name, data, contentType } = req.body || {};
+    if (!data) return res.status(400).json({ error: 'data (base64) requis' });
+    const Key   = name || `test_${Date.now()}.txt`;
+    const Body  = Buffer.from(data, 'base64');
+    await r2.put(Key, Body, contentType || 'text/plain');
+    res.json({ ok: true, key: Key });
+  } catch (e) { res.status(500).json({ ok: false, error: e.message }); }
+});
 
 module.exports = router;
