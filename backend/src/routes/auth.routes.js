@@ -13,17 +13,26 @@ const router = express.Router();
 router.post(
   '/login',
   [
-    body('identifiant').trim().notEmpty().withMessage('identifiant requis'),
     body('password').isString().notEmpty().withMessage('password requis'),
+    body('identifiant').optional().isString(),
+    body('email').optional().isString()
   ],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty())
       return res.status(400).json({ message: 'Payload invalide', errors: errors.array() });
 
-    const { identifiant, password } = req.body;
+    const { identifiant, email, password } = req.body;
 
-    const user = await User.findOne({ identifiant }).lean();
+    const query = identifiant
+      ? { identifiant }
+      : email
+      ? { email }
+      : null;
+
+    if (!query) return res.status(400).json({ message: 'identifiant ou email requis' });
+
+    const user = await User.findOne(query).lean();
     if (!user) return res.status(401).json({ message: 'Identifiants invalides' });
     if (user.isActive === false) return res.status(403).json({ message: 'Compte inactif' });
 
@@ -47,6 +56,7 @@ router.post(
     });
   }
 );
+
 
 // GET /api/auth/me
 router.get('/me', requireAuth, async (req, res) => {

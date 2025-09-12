@@ -5,8 +5,8 @@ const mongoose = require('mongoose');
 const multer = require('multer');
 const { Readable } = require('stream');
 const Gallery = require('../models/gallery.model');
-
 const router = express.Router();
+const Photo = require('../../models/photo.model');
 
 // ----- Multer (mémoire) -----
 const upload = multer({
@@ -180,5 +180,27 @@ router.delete('/:id', [param('id').isMongoId()], async (req, res, next) => {
     res.status(204).send();
   } catch (err) { next(err); }
 });
+
+// Ajouter une photo dans une galerie
+router.post('/:id/photos', async (req, res) => {
+  try {
+    const { filename, url } = req.body;
+    if (!filename || !url) {
+      return res.status(400).json({ error: 'filename et url requis' });
+    }
+
+    const photo = await Photo.create({
+      filename,
+      url,
+      galleryId: req.params.id
+    });
+
+    res.json({ ok: true, photo });
+  } catch (err) {
+    console.error('[ADD PHOTO ERROR]', err);
+    res.status(500).json({ ok: false, error: err.message });
+  }
+});
+
 
 module.exports = router;

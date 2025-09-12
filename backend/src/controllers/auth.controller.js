@@ -4,24 +4,41 @@ const User = require('../models/user.model');
 
 const JWT_SECRET = process.env.JWT_SECRET || 'dev-secret';
 
-// Connexion : identifiant + mot de passe
+// Connexion : identifiant ou email + mot de passe
 exports.login = async (req, res) => {
   try {
-    const { identifiant, password } = req.body;
+    const { identifiant, email, password } = req.body;
 
-    const user = await User.findOne({ identifiant });
-    if (!user) return res.status(401).json({ error: 'Identifiants invalides' });
+    if (!password || (!identifiant && !email)) {
+      return res.status(400).json({ message: 'Identifiant ou email et mot de passe requis' });
+    }
 
-    if (!user.isActive) return res.status(403).json({ error: 'Compte désactivé' });
+    const query = identifiant ? { identifiant } : { email };
+    const user = await User.findOne(query);
+    if (!user) return res.status(401).json({ message: 'Identifiants invalides' });
+
+    if (user.isActive === false) {
+      return res.status(403).json({ message: 'Compte désactivé' });
+    }
 
     const ok = await bcrypt.compare(password, user.password);
-    if (!ok) return res.status(401).json({ error: 'Identifiants invalides' });
+    if (!ok) return res.status(401).json({ message: 'Identifiants invalides' });
 
-    const token = jwt.sign({ sub: user._id, role: user.role }, JWT_SECRET, { expiresIn: '7d' });
+    const payload = { _id: user._id, role: user.role, identifiant: user.identifiant };
+    const token = jwt.sign(payload, JWT_SECRET, { expiresIn: '7d' });
 
-    res.json({ token, role: user.role });
+    res.json({
+      token,
+      user: {
+        _id: user._id,
+        identifiant: user.identifiant,
+        role: user.role,
+        email: user.email || null,
+        isActive: user.isActive !== false
+      }
+    });
   } catch (e) {
-    res.status(400).json({ error: e.message });
+    res.status(500).json({ message: 'Erreur serveur', error: e.message });
   }
 };
 
@@ -42,7 +59,7 @@ exports.createUser = async (req, res) => {
 
     res.status(201).json({ id: user._id, identifiant: user.identifiant });
   } catch (e) {
-    res.status(400).json({ error: e.message });
+    res.status(400).json({ message: 'Erreur création utilisateur', error: e.message });
   }
 };
 
