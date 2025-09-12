@@ -24,9 +24,13 @@ export class LoginComponent {
     this.loading = true;
 
     this.auth.login(this.identifiant, this.password).subscribe({
-      next: () => {
+      next: (res: any) => {
         this.error = null;
-        this.router.navigate(['/admin']);
+        if (res.user.role === 'admin') {
+          this.router.navigate(['/admin']);
+        } else {
+          this.router.navigate(['/mon-espace']); // 👈 redirection auto client
+        }
       },
       error: err => {
         this.error = err.error?.message || 'Échec de la connexion';
