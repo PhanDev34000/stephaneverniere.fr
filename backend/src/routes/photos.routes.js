@@ -91,37 +91,18 @@ router.get('/by-folder', async (req, res) => {
   }
 });
 
-router.get('/r2/ping', async (_req, res) => {
+router.post('/r2/presign', async (req, res) => {
   try {
-    await r2.ping();
-    res.json({ ok: true });
+    const { name, contentType } = req.body || {};
+    if (!name) return res.status(400).json({ error: 'name requis' });
+
+    const url = await r2.getPresignedUrl(name, contentType);
+    res.json({ ok: true, url });
   } catch (e) {
-    console.error('[R2 ERROR]', e); // log complet dans les logs Koyeb
-    res.status(500).json({
-      ok: false,
-      name: e.name,
-      message: e.message,
-      stack: e.stack,
-    });
+    console.error('[R2 PRESIGN ERROR]', e);
+    res.status(500).json({ ok: false, error: e.message });
   }
 });
 
-router.get('/r2/list', async (_req, res) => {
-  try {
-    const out = await r2.list();
-    res.json({ ok: true, items: (out.Contents || []).map(o => ({ key: o.Key, size: o.Size })) });
-  } catch (e) { res.status(500).json({ ok: false, error: e.message }); }
-});
-
-router.post('/r2/upload-test', async (req, res) => {
-  try {
-    const { name, data, contentType } = req.body || {};
-    if (!data) return res.status(400).json({ error: 'data (base64) requis' });
-    const Key   = name || `test_${Date.now()}.txt`;
-    const Body  = Buffer.from(data, 'base64');
-    await r2.put(Key, Body, contentType || 'text/plain');
-    res.json({ ok: true, key: Key });
-  } catch (e) { res.status(500).json({ ok: false, error: e.message }); }
-});
 
 module.exports = router;
