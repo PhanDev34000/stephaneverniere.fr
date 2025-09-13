@@ -57,12 +57,28 @@
   padding: 0 0.5rem;
 }
 
-/* Responsive : on empile en dessous du lg */
-@media (max-width: 576px) {
-  .img-wrap img {
-    max-width: 70vw;
+/* Responsive : mobile */
+@media (max-width: 768px) {
+  .presentation-grid {
+    grid-template-columns: 1fr;   /* une seule colonne */
+    text-align: center;  
+    gap: 16px;          
+  }
+
+  /* On change l'ordre pour empiler */
+  .presentation-grid .img-wrap:first-child {
+    order: -1; /* photo de gauche passe avant le texte */
+  }
+
+  .presentation-grid .text-wrap {
+    order: 0;  /* texte au milieu */
+  }
+
+  .presentation-grid .img-wrap:last-child {
+    order: 1; /* photo de droite passe après le texte */
   }
 }
+
 
 /* Bandeau presta */
 .presta {
