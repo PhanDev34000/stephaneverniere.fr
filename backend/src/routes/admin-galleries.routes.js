@@ -6,7 +6,7 @@ const multer = require('multer');
 const { Readable } = require('stream');
 const Gallery = require('../models/gallery.model');
 const router = express.Router();
-const Photo = require('../../models/photo.model');
+const Photo = require('../models/photo.model');
 
 // ----- Multer (mémoire) -----
 const upload = multer({
