@@ -26,6 +26,20 @@ export class FilmStripComponent {
     });
   }
 
-  prev()  { this.rail.nativeElement.scrollBy({ left: -600, behavior: 'smooth' }); }
-  next()  { this.rail.nativeElement.scrollBy({ left:  600, behavior: 'smooth' }); }
+  prev() {
+    const img = this.rail.nativeElement.querySelector('img');
+    if (img) {
+      const w = img.clientWidth + 8; // largeur image + gap (8px)
+      this.rail.nativeElement.scrollBy({ left: -w, behavior: 'smooth' });
+    }
+  }
+
+  next() {
+    const img = this.rail.nativeElement.querySelector('img');
+    if (img) {
+      const w = img.clientWidth + 8;
+      this.rail.nativeElement.scrollBy({ left: w, behavior: 'smooth' });
+    }
+  }
+
 }
