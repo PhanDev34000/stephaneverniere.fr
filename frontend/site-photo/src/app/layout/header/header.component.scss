@@ -33,33 +33,3 @@
   }
 }
 
-.navbar-toggler {
-  border-color: var(--primary-color); /* bordure */
-}
-
-.navbar-toggler-icon {
-  background-image: none; /* on vire l’icône par défaut */
-  width: 24px;
-  height: 2px;
-  background-color: var(--primary-color);
-  display: block;
-  position: relative;
-}
-
-.navbar-toggler-icon::before,
-.navbar-toggler-icon::after {
-  content: "";
-  position: absolute;
-  width: 24px;
-  height: 2px;
-  background-color: var(--primary-color);
-  left: 0;
-}
-
-.navbar-toggler-icon::before {
-  top: -7px;
-}
-
-.navbar-toggler-icon::after {
-  top: 7px;
-}
