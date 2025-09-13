@@ -13,6 +13,14 @@ import { AuthService } from '../../core/auth.service';
 export class HeaderComponent {
   constructor(public auth: AuthService, private router: Router) {}
 
+  closeMenu() {
+  const nav = document.querySelector('.navbar-collapse.show');
+  if (nav) {
+    (nav as HTMLElement).classList.remove('show');
+  }
+}
+
+
   logout() {
     this.auth.logout();
     this.router.navigateByUrl('/');

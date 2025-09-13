@@ -13,10 +13,10 @@
     <div class="collapse navbar-collapse" id="navbarContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <!-- Accueil → /accueil pour éviter le splash -->
-        <li class="nav-item"><a class="nav-link" routerLink="/accueil" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Accueil</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/photographe" routerLinkActive="active">Photographe</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/photobooth" routerLinkActive="active">Photobooth</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/contact" routerLinkActive="active">Contact</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/accueil" (click)="closeMenu()"  routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Accueil</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/photographe" (click)="closeMenu()" routerLinkActive="active">Photographe</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/photobooth" (click)="closeMenu()" routerLinkActive="active">Photobooth</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/contact" (click)="closeMenu()" routerLinkActive="active">Contact</a></li>
 
         @if (!auth.isLoggedIn()) {
           <li class="nav-item">
