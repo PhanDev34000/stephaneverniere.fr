@@ -22,8 +22,12 @@
 
 @media (max-width: 768px) {
   .navbar-brand .logo {
-    max-height: 40px;  /* ajuste la hauteur */
+    max-height: 50px;  /* ajuste la hauteur */
     width: auto;       /* conserve les proportions */
+  }
+
+   .navbar .navbar-brand {
+    margin: 0 auto;
   }
 }
 
