@@ -77,6 +77,10 @@
   .presentation-grid .img-wrap:last-child {
     order: 1; /* photo de droite passe après le texte */
   }
+
+  .presentation-grid .img-wrap img {
+    max-width: 50vw;   
+  }
 }
 
 
