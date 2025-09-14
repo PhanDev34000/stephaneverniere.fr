@@ -20,6 +20,13 @@
   border-radius: 0;
 }
 
+@media (max-width: 768px) {
+  .navbar-brand .logo {
+    max-height: 40px;  /* ajuste la hauteur */
+    width: auto;       /* conserve les proportions */
+  }
+}
+
 /* bouton “Connexion”  */
 .btn-outline-primary {
   border-width: 2px;
