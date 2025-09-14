@@ -210,7 +210,10 @@
   .pb-grid { grid-template-columns: repeat(3, 1fr); }
 }
 @media (max-width: 640px) {
-  .pb-grid { grid-template-columns: repeat(2, 1fr); }
+  .pb-grid {  grid-template-columns: repeat(2, 1fr);
+              align-items: start;
+              justify-items: center;   
+              padding-top: .5rem;  }
 }
 
 /* Bandeau citation */
