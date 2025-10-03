@@ -7,7 +7,7 @@ const router = express.Router();
 const upload = multer({ storage: multer.memoryStorage() });
 const r2 = require('../services/r2');
 // rajout
-const cloudinary = require('cloudinary').v2;
+
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
