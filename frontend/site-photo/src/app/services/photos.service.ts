@@ -11,6 +11,7 @@ export interface Photo {
   album: string;
   urls: { sm: string; md: string; lg: string };
   createdAt: string;
+  context?: { custom?: { alt?: string } };   // 👈 AJOUT
 }
 
 @Injectable({ providedIn: 'root' })

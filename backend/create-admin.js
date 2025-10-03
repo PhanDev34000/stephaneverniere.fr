@@ -9,8 +9,8 @@ async function createAdmin() {
   try {
     await mongoose.connect(MONGODB_URI);
 
-    const identifiant = 'admin';      // ton login
-    const password = 'admin123';      // mot de passe temporaire
+    const identifiant = '@AdminSV_site-photo!';      // ton login
+    const password = '@Site-Photo_SV.fr_34!';      // mot de passe temporaire
     const hash = await bcrypt.hash(password, 10);
 
     const admin = await User.create({
