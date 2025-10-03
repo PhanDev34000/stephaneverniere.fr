@@ -6,6 +6,29 @@ const Photo = require('../models/photo.model');
 const router = express.Router();
 const upload = multer({ storage: multer.memoryStorage() });
 const r2 = require('../services/r2');
+// rajout
+const cloudinary = require('cloudinary').v2;
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+});
+
+router.get('/', async (req, res) => {
+  try {
+    const result = await cloudinary.api.resources({
+      type: 'upload',
+      prefix: 'mes_photos/',   // 👈 dossier dans Cloudinary
+      context: true            // 👈 c’est ça qui ramène les ALT
+    });
+
+    res.json(result.resources);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+// Fin rajout
 
 // POST /api/photos  (upload + enregistrement DB)
 router.post('/', upload.single('file'), (req, res) => {

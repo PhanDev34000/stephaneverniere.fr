@@ -14,7 +14,7 @@
            [attr.srcset]="p.urls.sm + ' 600w, ' + p.urls.md + ' 1200w'"
            sizes="(max-width: 768px) 80vw, 600px"
            loading="lazy"
-           [attr.alt]="'Photographe Photobooth Montpellier - Stéphane Vernière'"/>
+           [attr.alt]="p.context?.custom?.alt || 'Photo Stéphane Vernière'"/>
     </div>
 
     <button class="nav next" type="button" (click)="next()" aria-label="Suivant">

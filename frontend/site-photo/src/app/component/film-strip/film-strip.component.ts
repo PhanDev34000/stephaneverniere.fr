@@ -2,6 +2,7 @@ import { Component, Input, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PhotosService, Photo } from '../../services/photos.service';
 
+
 @Component({
   selector: 'app-film-strip',
   standalone: true,
