@@ -61,4 +61,4 @@ Back-end : déployé sur Koyeb (connecté à MongoDB Atlas)
 
 ## Auteur : 
 
-👤 Stéphane Verniere – Photographe professionnel à Montpellier
+👤 Stéphane Verniere – Développeur & Photographe
