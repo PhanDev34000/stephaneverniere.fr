@@ -27,20 +27,24 @@ app.use(helmet({
   crossOriginResourcePolicy: false,
 }));
 
-const allowedOrigin = process.env.FRONT_ORIGIN || 'https://stephaneverniere.fr';
+// ---------- CORS sécurisé ----------
+const allowedOrigins = [
+  'https://stephaneverniere.fr',
+  'https://symbolic-rubia-svdev-70fd28d2.koyeb.app'
+];
 
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', allowedOrigin);
-  res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-
-  if (req.method === 'OPTIONS') {
-    return res.sendStatus(200);
-  }
-
-  next();
-});
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Origin not allowed by CORS'));
+    }
+  },
+  methods: ['GET','POST','PUT','PATCH','DELETE','OPTIONS'],
+  allowedHeaders: ['Content-Type','Authorization'],
+  credentials: true,
+}));
 
 app.use(express.json({ limit: '10mb' }));
 
@@ -65,8 +69,6 @@ app.get('/api/healthz', async (_req, res) => {
     res.json({ ok: true, db: 'down', error: err.message });
   }
 });
-
-
 
 // ---------- Routes ----------
 app.use('/api/auth', authRoutes);
@@ -110,4 +112,4 @@ mongoose.connect(MONGO_URI)
     process.exit(1);
   });
 
-  module.exports = app;
+module.exports = app;
