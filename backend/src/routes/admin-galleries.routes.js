@@ -8,10 +8,16 @@ const Gallery = require('../models/gallery.model');
 const router = express.Router();
 const Photo = require('../models/photo.model');
 
-// ----- Multer (mémoire) -----
+// ----- Multer (stockage temporaire disque) -----
 const upload = multer({
-  storage: multer.memoryStorage(),
-  limits: { files: 100, fileSize: 200 * 1024 * 1024 } // 25 Mo / fichier
+  storage: multer.diskStorage({
+    destination: '/tmp', // répertoire temporaire autorisé sur Koyeb
+    filename: (req, file, cb) => {
+      // on garde un nom unique pour éviter les collisions
+      cb(null, Date.now() + '-' + file.originalname);
+    }
+  }),
+  limits: { files: 100, fileSize: 200 * 1024 * 1024 } // 200 Mo / fichier
 });
 
 // ----- Helpers -----
