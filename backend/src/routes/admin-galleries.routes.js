@@ -7,6 +7,8 @@ const { Readable } = require('stream');
 const Gallery = require('../models/gallery.model');
 const router = express.Router();
 const Photo = require('../models/photo.model');
+const fs = require('fs');
+
 
 // ----- Multer (stockage temporaire disque) -----
 const upload = multer({
@@ -90,7 +92,7 @@ router.post(
 router.post(
   '/:id/files',
   [param('id').isMongoId()],
-  upload.array('files', 50),
+  upload.array('files', 100), // ← important : accepte jusqu'à 100 fichiers
   async (req, res, next) => {
     try {
       if (badRequestIfErrors(req, res)) return;
@@ -104,7 +106,6 @@ router.post(
 
       const bucket = new mongoose.mongo.GridFSBucket(mongoose.connection.db, { bucketName: 'photos' });
 
-      // Upload séquentiel (clair et robuste)
       const added = [];
       for (const f of files) {
         const filename = `${Date.now()}-${f.originalname}`;
@@ -116,15 +117,23 @@ router.post(
           },
         });
 
+        // Source du flux : buffer (memoryStorage) OU fichier disque (diskStorage)
+        const inputStream = f.buffer ? Readable.from(f.buffer) : fs.createReadStream(f.path);
+
         const fileId = await new Promise((resolve, reject) => {
-          Readable.from(f.buffer)
+          inputStream
+            .on('error', reject)
             .pipe(uploadStream)
             .on('error', reject)
-            .on('finish', () => resolve(uploadStream.id)); // ObjectId
+            .on('finish', () => {
+              // Nettoyage du fichier temporaire si on est en diskStorage
+              if (f.path) fs.unlink(f.path, () => {});
+              resolve(uploadStream.id);
+            });
         });
 
         added.push({
-          fileId: fileId.toString(), // on stocke en string (modèle adapté)
+          fileId: String(fileId),
           name: f.originalname,
           size: f.size,
           contentType: f.mimetype,
@@ -142,6 +151,7 @@ router.post(
     }
   }
 );
+
 
 // PUT /api/admin/galleries/:id → update (title)
 router.put(
