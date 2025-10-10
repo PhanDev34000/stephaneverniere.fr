@@ -11,7 +11,7 @@ const Photo = require('../models/photo.model');
 // ----- Multer (mémoire) -----
 const upload = multer({
   storage: multer.memoryStorage(),
-  limits: { files: 50, fileSize: 25 * 1024 * 1024 } // 25 Mo / fichier
+  limits: { files: 100, fileSize: 200 * 1024 * 1024 } // 25 Mo / fichier
 });
 
 // ----- Helpers -----
