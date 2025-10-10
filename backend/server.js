@@ -57,6 +57,11 @@ app.use('/api/auth/login', loginLimiter);
 app.use('/api/contact', contactLimiter);
 app.use('/api/photobooth/reserver', photoboothLimiter);
 
+
+console.log('[Startup] memoryUsage:', process.memoryUsage());
+console.log('[Startup] tmp folder content:', require('fs').readdirSync('/tmp'));
+
+
 // ---------- Health ----------
 app.get('/api/healthz', async (_req, res) => {
   try {
