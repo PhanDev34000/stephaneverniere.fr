@@ -111,7 +111,7 @@ if (!MONGO_URI) {
 mongoose.connect(MONGO_URI)
   .then(() => {
     console.log('MongoDB connecté');
-    app.listen(PORT, () => console.log(`API prête sur http://localhost:${PORT}`));
+    app.listen(PORT, '0.0.0.0',() => console.log(`API prête sur http://localhost:${PORT}`));
   })
   .catch(err => {
     console.error('❌ Connexion MongoDB échouée:', err.message);
