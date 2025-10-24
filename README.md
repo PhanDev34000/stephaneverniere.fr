@@ -59,6 +59,21 @@ Front-end : déployé sur OVH
 
 Back-end : déployé sur Koyeb (connecté à MongoDB Atlas)
 
+## Exécution avec Docker
+
+Le projet peut être lancé dans un environnement conteneurisé grâce à Docker Compose.
+Cela permet de démarrer automatiquement l’API Node.js et la base de données MongoDB.
+
+Lancer le projet : docker compose up -d --build
+
+Arrêter les conteneurs : docker compose down
+
+Accès : API : http://localhost:3000/health
+
+Base Mongo : port 27017
+
+Cette configuration permet de tester le projet sans installation locale de Node.js ni MongoDB.
+
 ## Auteur : 
 
 👤 Stéphane Verniere – Développeur & Photographe sur Montpellier
