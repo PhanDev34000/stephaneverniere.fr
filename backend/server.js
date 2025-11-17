@@ -27,10 +27,19 @@ app.use(helmet({
   crossOriginResourcePolicy: false,
 }));
 
+// 🔍 Log pour voir l'origine et l'URL de chaque requête
+app.use((req, res, next) => {
+  console.log('Origin:', req.headers.origin, ' | URL:', req.method, req.originalUrl);
+  next();
+});
+
 // ---------- CORS sécurisé ----------
 const allowedOrigins = [
   'https://stephaneverniere.fr',
-  'https://symbolic-rubia-svdev-70fd28d2.koyeb.app'
+  'https://www.stephaneverniere.fr',
+  'https://symbolic-rubia-svdev-70fd28d2.koyeb.app',
+  'http://localhost:4200',        
+  'http://127.0.0.1:4200' 
 ];
 
 app.use(cors({
