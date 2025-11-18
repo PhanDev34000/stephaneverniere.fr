@@ -2,11 +2,10 @@ const express = require('express');
 const multer = require('multer');
 const cloudinary = require('../../config/cloudinary');   
 const Photo = require('../models/photo.model');          
-
+const mongoose = require('mongoose');
 const router = express.Router();
 const upload = multer({ storage: multer.memoryStorage() });
 const r2 = require('../services/r2');
-// rajout
 
 
 cloudinary.config({
@@ -19,8 +18,8 @@ router.get('/', async (req, res) => {
   try {
     const result = await cloudinary.api.resources({
       type: 'upload',
-      prefix: 'mes_photos/',   // 👈 dossier dans Cloudinary
-      context: true            // 👈 c’est ça qui ramène les ALT
+      prefix: 'mes_photos/',   //  dossier dans Cloudinary
+      context: true            //  c’est ça qui ramène les ALT
     });
 
     res.json(result.resources);
@@ -28,7 +27,6 @@ router.get('/', async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-// Fin rajout
 
 // POST /api/photos  (upload + enregistrement DB)
 router.post('/', upload.single('file'), (req, res) => {
@@ -78,6 +76,7 @@ router.get('/', async (req, res) => {
     res.status(500).json({ message: e.message });
   }
 });
+
 
 // GET /api/photos/by-folder?folder=prestations|prestations/Mariage&limit=30
 router.get('/by-folder', async (req, res) => {
