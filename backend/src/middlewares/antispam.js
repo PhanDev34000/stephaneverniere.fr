@@ -1,4 +1,3 @@
-// backend/src/middlewares/antispam.js
 // Rejette si un champ "honeypot" (rempli par les bots) est présent
 function antiSpam(req, res, next) {
   const b = req.body || {};

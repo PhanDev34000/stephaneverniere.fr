@@ -1,4 +1,3 @@
-// backend/src/routes/auth.routes.js
 const express = require('express');
 const { body, validationResult } = require('express-validator');
 const jwt = require('jsonwebtoken');

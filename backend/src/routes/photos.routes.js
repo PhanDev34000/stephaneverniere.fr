@@ -62,20 +62,33 @@ router.post('/', upload.single('file'), (req, res) => {
 // GET /api/photos?album=prestations&limit=20&after=<id>
 router.get('/', async (req, res) => {
   try {
-    const { album, limit = 20, after } = req.query;
+    let { album, limit = 20, after } = req.query;
+
     const q = {};
-    if (album) q.album = album;
-    if (after) q._id = { $gt: after };
+
+    if (album && typeof album === 'string') {
+      q.album = album;
+    }
+
+    if (after) {
+      if (typeof after !== 'string' || !after.match(/^[0-9a-fA-F]{24}$/)) {
+        return res.status(400).json({ message: 'paramètre "after" invalide' });
+      }
+      q._id = { $gt: new mongoose.Types.ObjectId(after) };
+    }
+
+    const limitNum = Math.min(Number(limit) || 20, 100);
 
     const items = await Photo.find(q)
       .sort({ order: 1, createdAt: 1, _id: 1 })
-      .limit(Math.min(Number(limit), 100));
+      .limit(limitNum);
 
     res.json({ items, next: items.length ? items[items.length - 1]._id : null });
   } catch (e) {
     res.status(500).json({ message: e.message });
   }
 });
+
 
 
 // GET /api/photos/by-folder?folder=prestations|prestations/Mariage&limit=30
