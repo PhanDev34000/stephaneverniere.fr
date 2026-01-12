@@ -106,7 +106,7 @@ app.use((err, _req, res, _next) => {
 });
 
 // ---------- Démarrage ----------
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
 
 app.get('/health', (req,res)=>res.json({ ok: true }));
 
