@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  API_BASE: 'https://symbolic-rubia-svdev-70fd28d2.koyeb.app/api',
+  API_BASE: 'https://fluffy-orel-svdev34-1caab703.koyeb.app',
   DISABLE_BACKEND: false
 };

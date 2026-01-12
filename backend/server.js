@@ -38,6 +38,7 @@ const allowedOrigins = [
   'https://stephaneverniere.fr',
   'https://www.stephaneverniere.fr',
   'https://symbolic-rubia-svdev-70fd28d2.koyeb.app',
+  'https://fluffy-orel-svdev34-1caab703.koyeb.app',
   'http://localhost:4200',        
   'http://127.0.0.1:4200' 
 ];

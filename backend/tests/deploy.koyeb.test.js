@@ -1,6 +1,6 @@
 const request = require("supertest");
 
-const API_URL = "https://symbolic-rubia-svdev-70fd28d2.koyeb.app";
+const API_URL = "https://fluffy-orel-svdev34-1caab703.koyeb.app";
 
 jest.setTimeout(20000); // temps max 20s car Koyeb peut être lent à sortir du sleep
 
