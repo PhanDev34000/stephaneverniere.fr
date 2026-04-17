@@ -15,6 +15,16 @@
   font-weight: 600;
   margin: 0 0 1rem 0;
   color: white;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 52px;
+    height: 3px;
+    background: var(--secondary-color);
+    border-radius: 2px;
+    margin: 0.4rem auto 1.25rem;
+  }
 }
 
 /* Liste / item */

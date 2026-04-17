@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { RouterLink, RouterLinkActive, Router } from '@angular/router';
-
 import { AuthService } from '../../core/auth.service';
 
 @Component({
@@ -11,15 +10,19 @@ import { AuthService } from '../../core/auth.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
+  isScrolled = false;
+
   constructor(public auth: AuthService, private router: Router) {}
 
-  closeMenu() {
-  const nav = document.querySelector('.navbar-collapse.show');
-  if (nav) {
-    (nav as HTMLElement).classList.remove('show');
+  @HostListener('window:scroll')
+  onScroll() {
+    this.isScrolled = window.scrollY > 50;
   }
-}
 
+  closeMenu() {
+    const nav = document.querySelector('.navbar-collapse.show');
+    if (nav) (nav as HTMLElement).classList.remove('show');
+  }
 
   logout() {
     this.auth.logout();

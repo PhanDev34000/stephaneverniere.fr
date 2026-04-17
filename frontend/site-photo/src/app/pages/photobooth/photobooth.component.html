@@ -7,13 +7,53 @@
     loading="eager"
   />
 </section>
-<!--    Présentation    -->
+<!--    Présentation Photobooth — layout 2 colonnes    -->
 <section class="presentation full-bleed">
-  <div class="container">
-    <h2>Présentation</h2>
-    <p>Mon <strong>Photobooth</strong> est une pièce maîtresse <strong>élégante et authentique</strong>, entièrement fabriquée <strong>en chêne massif</strong>. Sa beauté naturelle et sa qualité artisanale en font un ajout exceptionnel à n'importe quel événement. Il est conçu pour se fondre harmonieusement dans l'atmosphère de votre soirée, ajoutant une touche de classe et de sophistication.<br> Lorsque vous choisissez ce Photobooth, vous choisissez bien plus qu'une simple animation. C'est une <strong>expérience</strong> interactive qui divertira vos invités et leur permettra de créer des souvenirs inoubliables. Ils pourront se prendre en photo de manière ludique et créative, repartant avec des clichés qui immortaliseront les moments spéciaux de votre événement.<br> Que ce soit lors d'un mariage, d'une fête d'entreprise, d'un anniversaire ou de tout autre rassemblement, ce Photobooth apportera une dimension unique et amusante à l'occasion. C'est une manière parfaite de créer des souvenirs et de laisser une empreinte mémorable à tous vos invités.<br> N'hésitez pas à me contacter pour réserver ce Photobooth et ajouter une touche d'authenticité et d'élégance à votre prochain événement. Vos invités seront enchantés de cette expérience et repartiront avec des souvenirs inestimables.</p>
+  <div class="pres-layout">
+
+    <!-- Colonne gauche : texte -->
+    <div class="pres-text">
+      <h2>Présentation</h2>
+      <p>
+        Ce <strong>Photobooth</strong> est une pièce maîtresse <strong>élégante et authentique</strong>, entièrement fabriquée <strong>en chêne massif</strong>. Sa beauté naturelle et sa qualité artisanale en font un ajout exceptionnel à n'importe quel événement. Il est conçu pour se fondre harmonieusement dans l'atmosphère de votre soirée, ajoutant une touche de classe et de sophistication.<br>
+        Lorsque vous choisissez ce Photobooth, vous choisissez bien plus qu'une simple animation. C'est une <strong>expérience interactive</strong> qui divertira vos invités et leur permettra de créer des souvenirs inoubliables.<br>
+        Que ce soit lors d'un mariage, d'une fête d'entreprise, d'un anniversaire ou de tout autre rassemblement, ce Photobooth apportera une dimension unique et amusante à l'occasion.<br>
+        N'hésitez pas à me contacter pour réserver ce Photobooth et ajouter une touche d'<strong>authenticité et d'élégance</strong> à votre prochain événement.
+      </p>
+    </div>
+
+    <!-- Colonne droite : stats -->
+    <div class="pres-stats">
+      <div class="stat-card">
+        <div class="stat-number">8 ans</div>
+        <div class="stat-label">d'expérience</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">fun & convivial</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">Unique</div>
+        <div class="stat-label">borne en chêne massif</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">Illimité</div>
+        <div class="stat-label">envois par mail</div>
+      </div>
+    </div>
+
   </div>
 </section>
+
+
+<!-- VAGUE : bleu foncé → vert -->
+<div class="wave-sep full-bleed" aria-hidden="true" style="background:#AFD1B1">
+  <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,28 C360,64 1080,-8 1440,28 L1440,0 L0,0 Z" fill="#073B4C"/>
+    <path d="M0,28 C360,64 1080,-8 1440,28 L1440,56 L0,56 Z" fill="#AFD1B1"/>
+  </svg>
+</div>
+
 <!-- Caroussels -->
 
 <!-- Titre global -->
@@ -34,6 +74,14 @@
   style="--strip-h: 250px">
 </app-film-strip2>
 </section>
+
+<!-- VAGUE : vert → bleu foncé -->
+<div class="wave-sep full-bleed" style="background:#073B4C" aria-hidden="true">
+  <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,28 C480,-8 960,64 1440,28 L1440,0 L0,0 Z" fill="#AFD1B1"/>
+    <path d="M0,28 C480,-8 960,64 1440,28 L1440,56 L0,56 Z" fill="#073B4C"/>
+  </svg>
+</div>
 
 <!--  Bandeau avec Cadres -->
 <section class="prestations full-bleed">
@@ -88,12 +136,26 @@
   </div>
 </section>
 
+<!-- VAGUE : bleu foncé → vert -->
+<div class="wave-sep full-bleed" aria-hidden="true" style="background:#AFD1B1">
+  <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,28 C360,64 1080,-8 1440,28 L1440,0 L0,0 Z" fill="#073B4C"/>
+    <path d="M0,28 C360,64 1080,-8 1440,28 L1440,56 L0,56 Z" fill="#AFD1B1"/>
+  </svg>
+</div>
 
 <!--   FAQ  -->
-<app-faq></app-faq>
+<div style="background:#AFD1B1; padding-bottom: 2px;">
+  <app-faq></app-faq>
+</div>
 
-
-
+<!-- VAGUE : vert → bleu foncé -->
+<div class="wave-sep full-bleed" style="background:#AFD1B1" aria-hidden="true">
+  <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,28 C480,-8 960,64 1440,28 L1440,0 L0,0 Z" fill="#AFD1B1"/>
+    <path d="M0,28 C480,-8 960,64 1440,28 L1440,56 L0,56 Z" fill="#073B4C"/>
+  </svg>
+</div>
 
 <!-- Formulaire  -->
  <section class="pb-reservation-wrap">

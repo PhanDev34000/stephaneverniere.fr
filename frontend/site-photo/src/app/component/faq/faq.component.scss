@@ -1,12 +1,10 @@
 /* Conteneur */
-.faq {
- 
+.faq { 
   margin: 0 auto;
-  padding: 1rem;
-  background: var(--secondary-color);
   margin-inline: calc(50% - 50vw);
-  padding-inline: calc(50vw - 50%);
-   margin-top: 0;
+  margin-bottom: 0;
+  padding: 1rem calc(50vw - 50%) 1.5rem calc(50vw - 50%);
+  background: var(--secondary-color);
 }
 
 /* Titre */

@@ -1,67 +1,268 @@
+/* ================================================
+   CONTACT COMPONENT — S. Vernière Photographe
+   ================================================ */
+
 .bandeau-img {
-  display: block;     /* enlève l’espace blanc sous l’image */
-  width: 100%;        /* prend toute la largeur dispo */
-  height: auto;       /* garde le ratio d’origine, pas de “grossissement” */
+  display: block;
+  width: 100%;
+  height: auto;
   max-width: 100%;
 }
 
-/* Bloc plein écran (sans bandes) */
-.contact-form {
-  background: var(--primary-color);
-  color: #fff;
-  padding: 2rem 0;
-  box-shadow: 0 0 0 100vmax var(--primary-color);
+/* ================================================
+   BLOC GÉNÉRAL
+   ================================================ */
+.contact-wrap {
+  background: #073B4C;
+  box-shadow: 0 0 0 100vmax #073B4C;
   clip-path: inset(0 -100vmax);
+  padding: clamp(32px, 5vw, 64px) 0;
 }
 
-                             /* Formulaire   */
-/* Titres centrés  */
-.contact-form h1,
-.contact-form h4 {
-  text-align: center;
-  color: #fff !important;
-  margin: 0 0 1rem;
-}
-
-/* Réduire la largeur du formulaire */
-.contact-form form {
-  max-width: 1000px;   
+.contact-inner {
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
-/* Champs blancs */
-.contact-form .form-control,
-.contact-form .form-select,
-.contact-form textarea {
-  background: #fff;
-  color: #222;
-  border: 1px solid #e5e5e5;
-}
-.contact-form .form-control:focus,
-.contact-form .form-select:focus,
-.contact-form textarea:focus {
-  border-color: var(--secondary-color);
-  outline: 0;
-  box-shadow: none;
+/* ================================================
+   TITRE
+   ================================================ */
+.contact-header {
+  text-align: center;
+  margin-bottom: clamp(24px, 4vw, 48px);
 }
 
-/* Boutons centrés + secondary */
-.contact-form form .d-flex { justify-content: center; }
-.contact-form .btn.btn-primary {
-  background: var(--secondary-color);
-  border-color: var(--secondary-color);
+.contact-super {
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  font-size: clamp(0.9rem, 1.3vw, 1.05rem);
+  color: rgba(255, 255, 255, 0.65);
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5rem;
 }
-.contact-form .btn.btn-outline-secondary {
-  color: var(--secondary-color);
-  border-color: var(--secondary-color);
-}
-.contact-form .btn.btn-outline-secondary:hover {
-  background: var(--secondary-color);
+
+.contact-header h1 {
+  font-family: 'Fredoka', sans-serif;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 600;
   color: #fff;
+  margin: 0;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 52px;
+    height: 3px;
+    background: #AFD1B1;
+    border-radius: 2px;
+    margin: 0.4rem auto 0;
+  }
 }
 
-form {
-  border: 2px solid white;
-  padding: 2rem;       
+/* ================================================
+   LAYOUT 2 COLONNES
+   ================================================ */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: clamp(16px, 3vw, 32px);
+  align-items: start;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ================================================
+   CARTE INFOS — glassmorphism
+   ================================================ */
+.info-card {
+  background: rgba(175, 209, 177, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(175, 209, 177, 0.35);
+  border-radius: 18px;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(175, 209, 177, 0.15);
+}
+
+.info-card h2 {
+  font-family: 'Fredoka', sans-serif;
+  font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 1.5rem;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 2px;
+    background: #AFD1B1;
+    border-radius: 2px;
+    margin: 0.35rem 0 0;
+  }
+}
+
+.info-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 1.25rem;
+}
+
+.info-icon {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+  filter: brightness(0) invert(1);
+}
+
+.info-icon2 {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.info-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0 0 0.2rem;
+}
+
+.info-value {
+  font-size: clamp(0.9rem, 1.1vw, 1rem);
+  color: #fff;
+  font-weight: 500;
+  margin: 0;
+}
+
+.info-sub {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0.2rem 0 0;
+  font-style: italic;
+}
+
+.info-divider {
+  height: 1px;
+  background: rgba(175, 209, 177, 0.25);
+  margin: 1.25rem 0;
+}
+
+.info-note {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.7;
+  font-style: italic;
+  margin: 0;
+}
+
+/* ================================================
+   CARTE FORMULAIRE — glassmorphism
+   ================================================ */
+.form-card {
+  background: rgba(175, 209, 177, 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(175, 209, 177, 0.3);
+  border-radius: 18px;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(175, 209, 177, 0.1);
+}
+
+/* Labels */
+.form-card .form-label {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  margin-bottom: 4px;
+}
+
+/* Inputs */
+.form-card .form-control,
+.form-card .form-select,
+.form-card textarea {
+  background: rgba(255, 255, 255, 0.92);
+  color: #1a2e35;
+  border: 1.5px solid rgba(175, 209, 177, 0.3);
   border-radius: 8px;
+  transition: border-color 0.22s ease, box-shadow 0.22s ease;
+
+  &:focus {
+    border-color: #AFD1B1;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(175, 209, 177, 0.25);
+    background: #fff;
+  }
+}
+
+/* Radio buttons */
+.form-card .form-check-label {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.9rem;
+}
+
+.form-card .form-check-input:checked {
+  background-color: #AFD1B1;
+  border-color: #AFD1B1;
+}
+
+/* Boutons */
+.btn-send {
+  padding: 11px 32px;
+  border-radius: 24px;
+  border: none;
+  background: #AFD1B1;
+  color: #073B4C;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;
+
+  &:hover {
+    background: #059B77;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(5, 155, 119, 0.4);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+.btn-reset {
+  padding: 11px 28px;
+  border-radius: 24px;
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.22s ease, color 0.22s ease, border-color 0.22s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }

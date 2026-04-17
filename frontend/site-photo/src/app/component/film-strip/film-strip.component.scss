@@ -30,7 +30,7 @@
   width: 40px; height: 40px;
   border-radius: 50%;
   border: 0;
-  background: rgba(0,0,0,.35);
+  background: #AFD1B1;
   color: #fff;
   cursor: pointer;
 
@@ -42,6 +42,6 @@
   padding: 0;
   font-size: 22px;  /* ajuste si besoin */
 }
-.nav:hover { background: rgba(0,0,0,.5); }
+.nav:hover { background: var(--secondary-dark) }
 .nav.prev { left: 6px; }
 .nav.next { right: 6px; }

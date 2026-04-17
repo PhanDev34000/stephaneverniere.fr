@@ -7,21 +7,62 @@
     loading="eager"
   />
 </section>
-<!--    Présentation    -->
+<!--    Présentation Photographe — layout 2 colonnes    -->
 <section class="presentation full-bleed">
-  <div class="container">
-    <h2>Présentation</h2>    
-    <p>
-        Riche d'une vingtaine d'années d'expérience en tant que photographe indépendant et pour diverses agences, je vous offre un <strong>éventail complet de services photographiques</strong>, que vous soyez un professionnel ou un particulier.<br> Mon parcours m'a permis de développer une expertise dans divers domaines de la photographie, afin de répondre au mieux à vos besoins.<br>
+  <div class="pres-layout">
+ 
+    <!-- Colonne gauche : texte -->
+    <div class="pres-text">
+      <h2>Présentation</h2>
+      <p>
+        Photographe indépendant et freelance pour agences, je vous offre un <strong>éventail complet de services photographiques</strong>, que vous soyez un professionnel ou un particulier.<br>
+        Mon parcours m'a permis de développer une expertise dans divers domaines de la photographie, afin de répondre au mieux à vos besoins.<br>
         En tant que photographe polyvalent, je suis cependant spécialisé dans les domaines suivants :<br>
-            - <strong>Photographie de reportages</strong> : Capturer des moments authentiques et des histoires uniques, que ce soit pour des événements spéciaux, des mariages, des séances familiales, ou des projets documentaires.<br>
-            - <strong>Événementiel</strong> : Immortaliser vos événements professionnels ou personnels, en garantissant des images qui reflètent l'ambiance et l'importance de l'occasion.<br>
-            - <strong>Institutionnel</strong> : Fournir des images de qualité professionnelle pour vos besoins de communication d'entreprise, que ce soit pour des portraits, des images corporatives, ou des photos de produits.<br>
-        Que vous soyez une entreprise cherchant à renforcer votre image de marque ou un particulier souhaitant préserver des souvenirs précieux, je mets <strong>mon expérience et ma créativité à votre service</strong>.<br>
-        N'hésitez pas à me contacter pour discuter de vos projets photographiques, je suis là pour concrétiser vos idées en images.
-    </p>
+        — <strong>Reportages</strong> : Capturer des moments authentiques et des histoires uniques.<br>
+        — <strong>Événementiel</strong> : Immortaliser vos événements professionnels ou personnels.<br>
+        — <strong>Institutionnel</strong> : Fournir des images de qualité professionnelle pour votre communication.<br>
+        N'hésitez pas à me contacter pour discuter de vos projets, je suis là pour <strong>concrétiser vos idées en images</strong>.
+      </p>
+    </div>
+ 
+    <!-- Colonne droite : stats -->
+    <div class="pres-stats">
+      <div class="stat-card">
+        <div class="stat-number">20 ans</div>
+        <div class="stat-label">d'expérience</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">Éclairage</div>
+        <div class="stat-label">professionnel</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">+50 </div>
+        <div class="stat-label">Mariages</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">+100</div>
+        <div class="stat-label">Reportages</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">de sourires garantis</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">Montpellier</div>
+        <div class="stat-label">& toute la France</div>
+      </div>
+    </div> 
   </div>
 </section>
+
+<!-- VAGUE : bleu foncé → vert -->
+<div class="wave-sep full-bleed" aria-hidden="true" style="background:#AFD1B1">
+  <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,28 C360,64 1080,-8 1440,28 L1440,0 L0,0 Z" fill="#073B4C"/>
+    <path d="M0,28 C360,64 1080,-8 1440,28 L1440,56 L0,56 Z" fill="#AFD1B1"/>
+  </svg>
+</div>
+
 <!-- Caroussels -->
 
 <!-- Titre global -->
@@ -33,8 +74,8 @@
 </section>
 
 <!-- Portrait -->
-<section class="prestation full-bleed">
-  <div class="container">
+<section class="prestation full-bleed" id="portrait">
+  <div style="display:flex; justify-content:center; width:100%">
     <h3 class="prestation__title">Portrait</h3>
   </div>
   <app-film-strip2
@@ -47,39 +88,9 @@
 </app-film-strip2>
 </section>
 
-<!-- Packshot -->
-<section class="prestation full-bleed">
-  <div class="container">
-    <h3 class="prestation__title">Packshot</h3>
-  </div>
-  <app-film-strip2
-  [folder]="'prestations/packshot'"
-  [limit]="40"
-  [shuffle]="true"
-  [widthPercent]="90"
-  [background]="'secondary'"
-  style="--strip-h: 250px">
-</app-film-strip2>
-</section>
-
-<!-- Mariage -->
-<section class="prestation full-bleed">
-  <div class="container">
-    <h3 class="prestation__title">Mariage</h3>
-  </div>
-  <app-film-strip2
-  [folder]="'prestations/mariage'"
-  [limit]="40"
-  [shuffle]="true"
-  [widthPercent]="90"
-  [background]="'secondary'"
-  style="--strip-h: 250px">
-</app-film-strip2>
-</section>
-
 <!-- Institutionnel -->
-<section class="prestation full-bleed">
-  <div class="container">
+<section class="prestation full-bleed" id="institutionnel">
+  <div style="display:flex; justify-content:center; width:100%">
     <h3 class="prestation__title">Institutionnel</h3>
   </div>
   <app-film-strip2
@@ -93,8 +104,8 @@
 </section>
 
 <!-- Événementiel -->
-<section class="prestation full-bleed">
-  <div class="container">
+<section class="prestation full-bleed" id="evenementiel">
+  <div style="display:flex; justify-content:center; width:100%">
     <h3 class="prestation__title">Événementiel</h3>
   </div>
   <app-film-strip2
@@ -107,9 +118,39 @@
 </app-film-strip2>
 </section>
 
+<!-- Mariage -->
+<section class="prestation full-bleed" id="mariage">
+  <div style="display:flex; justify-content:center; width:100%">
+    <h3 class="prestation__title">Mariage</h3>
+  </div>
+  <app-film-strip2
+  [folder]="'prestations/mariage'"
+  [limit]="40"
+  [shuffle]="true"
+  [widthPercent]="90"
+  [background]="'secondary'"
+  style="--strip-h: 250px">
+</app-film-strip2>
+</section>
+
+<!-- Packshot -->
+<section class="prestation full-bleed" id="packshot">
+  <div style="display:flex; justify-content:center; width:100%">
+    <h3 class="prestation__title">Packshot</h3>
+  </div>
+  <app-film-strip2
+  [folder]="'prestations/packshot'"
+  [limit]="40"
+  [shuffle]="true"
+  [widthPercent]="90"
+  [background]="'secondary'"
+  style="--strip-h: 250px">
+</app-film-strip2>
+</section>
+
 <!-- Divers -->
-<section class="prestation full-bleed">
-  <div class="container">
+<section class="prestation full-bleed" id="divers">
+  <div style="display:flex; justify-content:center; width:100%">
     <h3 class="prestation__title">Divers<span class="help" tabindex="0"
     aria-label="Autres prestations : Photos d'Art, Vernissage, Prêt à porter (lingerie, collections...), Photographe plateau, Concert …">?</span></h3>
   </div>
@@ -123,6 +164,14 @@
 </app-film-strip2>
 </section>
 
+<!-- VAGUE : vert → bleu foncé -->
+<div class="wave-sep full-bleed" style="background:#073B4C" aria-hidden="true">
+  <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,28 C480,-8 960,64 1440,28 L1440,0 L0,0 Z" fill="#AFD1B1"/>
+    <path d="M0,28 C480,-8 960,64 1440,28 L1440,56 L0,56 Z" fill="#073B4C"/>
+  </svg>
+</div>
+
 <!--   FAQ  -->
 <app-faq2></app-faq2>
 
@@ -133,7 +182,7 @@
     <h2>Pour plus d'infos, contactez-moi !</h2>
     
     <button class="btn-contact" type="button" routerLink="/contact">
-      Contact
+      ✉ Contact
     </button>
   </div>
 </section>

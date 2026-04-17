@@ -1,61 +1,57 @@
+/* ================================================
+   STYLES GLOBAUX — S. Vernière Photographe
+   ================================================ */
+
 html, body { margin: 0; }
-body { overflow-x: hidden; } 
+body { overflow-x: hidden; }
+
+/* Import Google Fonts — Lato remplace Baloo 2 pour le corps */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap');
 
 /* Titres */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Fredoka', sans-serif;
+  letter-spacing: 0.3px;
 }
 
-/* Paragraphes */
+/* Corps de texte : Lato, plus lisible et professionnel que Baloo 2 */
 body, p, span, li {
-  font-family: 'Baloo 2', sans-serif;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
 }
 
-/*  Couleur   */
+/* ================================================
+   PALETTE DE COULEURS
+   ================================================ */
 :root {
-  --primary-color: #073B4C;
-  --secondary-color: #AFD1B1;
-  --tertary-color : #13A3D4;
-  /* Variantes */
-  --primary-light: #0D5C70;
-  --primary-bg: #E1EBEE;  
+  --primary-color:   #073B4C;
+  --primary-light:   #0D5C70;
+  --primary-bg:      #E8F4F8;
 
-  --secondary-dark: #059B77;
-  --secondary-light: #B9F6E3;  
+  --secondary-color: #AFD1B1;
+  --secondary-dark:  #059B77;
+  --secondary-light: #B9F6E3;
+
+  --tertary-color:   #13A3D4;
+
+  /* Tokens design system */
+  --radius-btn:  24px;
+  --radius-card: 12px;
+  --shadow-soft: 0 4px 20px rgba(7, 59, 76, 0.12);
+  --transition:  0.22s ease;
 }
 
-
-/* Header / Navbar */
+/* ================================================
+   NAVBAR / HEADER
+   ================================================ */
 header, nav {
   background-color: var(--primary-color);
   color: white;
 }
 
-/* Boutons principaux */
-button, .btn-primary {
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-button:hover, .btn-primary:hover {
-  background-color: var(--tertary-color);
-}
-
-/* Liens actifs */
-a {
-  color: var(--secondary-color);
-}
-
-a:hover {
-  color: var(--primary-color);
-}
-
-
-/*  Bandeau  */
+/* ================================================
+   FULL-BLEED UTILITAIRE
+   ================================================ */
 .full-bleed {
   width: 100vw;
   position: relative;
@@ -64,3 +60,90 @@ a:hover {
   margin-left: -50vw;
   margin-right: -50vw;
 }
+
+/* ================================================
+   VAGUES SVG — SÉPARATEURS DE SECTIONS
+   À insérer dans les templates HTML entre sections.
+   Voir INSTRUCTIONS_HTML.md pour les snippets complets.
+   ================================================ */
+.wave-sep {
+  display: block;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  margin-left: -50vw;
+  line-height: 0;
+  overflow: hidden;
+
+  svg {
+    display: block;
+    width: 100%;
+    height: 48px;
+  }
+}
+
+/* ================================================
+   BOUTONS GLOBAUX REDESIGNÉS
+   ================================================ */
+button,
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px 28px;
+  border-radius: var(--radius-btn);
+  cursor: pointer;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+
+button:hover,
+.btn-primary:hover {
+  background-color: var(--primary-light);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(7, 59, 76, 0.28);
+}
+
+button:active,
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* ================================================
+   LIENS
+   ================================================ */
+a {
+  color: var(--secondary-color);
+  transition: color var(--transition);
+}
+a:hover { color: var(--tertary-color); }
+
+/* ================================================
+   SIGNATURE GRAPHIQUE DES TITRES H2
+   Ajouter la classe .section-heading sur vos <h2>
+   + une classe modificatrice selon le fond :
+     .sh--on-dark  → barre vert clair
+     .sh--on-light → barre bleu foncé
+     .sh--on-green → barre bleu foncé
+   ================================================ */
+.section-heading {
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 52px;
+    height: 3px;
+    border-radius: 2px;
+    margin: 0.4rem auto 1.1rem;
+  }
+}
+
+.section-heading.sh--on-dark::after  { background: var(--secondary-color); }
+.section-heading.sh--on-light::after { background: var(--primary-color); }
+.section-heading.sh--on-green::after { background: var(--primary-color); }

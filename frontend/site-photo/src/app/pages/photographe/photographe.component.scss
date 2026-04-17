@@ -1,120 +1,234 @@
+/* ================================================
+   PHOTOGRAPHE COMPONENT — S. Vernière Photographe
+   ================================================ */
+
+/* ---- Bandeau hero ---- */
 .bandeau-img {
-  display: block;     /* enlève l’espace blanc sous l’image */
-  width: 100%;        /* prend toute la largeur dispo */
-  height: auto;       /* garde le ratio d’origine, pas de “grossissement” */
+  display: block;
+  width: 100%;
+  height: auto;
   max-width: 100%;
 }
 
+/* ================================================
+   SECTION PRÉSENTATION
+   ================================================ */
 .presentation {
   background: var(--primary-color);
   color: white;
-  padding: clamp(24px, 5vw, 56px) 0;
+  padding: clamp(32px, 5vw, 64px) 0;
+  margin-bottom: -1px;
 }
 
-/* Contrainte de largeur à l’intérieur du full-bleed */
-.presentation__inner {
-  max-width: 1440px;   
-  margin: 0 auto;
-  padding: 0 1rem;
-}
+.presentation .container { max-width: 900px; }
 
 .presentation h2 {
-  margin: 0 0 1.5rem 0;
-  text-align: center;  
+  text-align: center;
   font-weight: 600;
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  margin: 0 0 0.4rem;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 52px;
+    height: 3px;
+    background: var(--secondary-color);
+    border-radius: 2px;
+    margin: 0.4rem auto 1.25rem;
+  }
+}
+
+.presentation p {
+  text-align: left;
+  line-height: 1.8;
+  font-size: clamp(0.95rem, 1.1rem + 0.1vw, 1.05rem);
+  color: rgba(255, 255, 255, 0.9);
+  padding: 0 0.5rem;
+}
+
+/* Layout 2 colonnes : texte | stats */
+.pres-layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: clamp(24px, 4vw, 56px);
+  align-items: center;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Colonne texte */
+.pres-text h2 {
+  text-align: left;
+  font-weight: 600;
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  color: #fff;
+  margin: 0 0 0.3rem;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 52px;
+    height: 3px;
+    background: #AFD1B1;
+    border-radius: 2px;
+    margin: 0.4rem 0 1.25rem;
+  }
+}
+
+.pres-text p {
+  text-align: left;
+  line-height: 1.8;
+  font-size: clamp(0.92rem, 1.05rem + 0.1vw, 1.02rem);
+  color: rgba(255, 255, 255, 0.88);
+}
+
+/* Colonne stats : grille 2x2 */
+.pres-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(10px, 1.5vw, 16px);
+}
+
+/* Carte stat — glassmorphism cohérent avec le reste du site */
+.stat-card {
+  background: rgba(175, 209, 177, 0.1);
+  border: 1.5px solid rgba(175, 209, 177, 0.3);
+  border-radius: 16px;
+  padding: clamp(0.9rem, 1.5vw, 1.3rem) clamp(0.75rem, 1.2vw, 1rem);
+  text-align: center;
+  transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+  cursor: default;
+
+  &:hover {
+    transform: translateY(-5px);
+    border-color: rgba(175, 209, 177, 0.8);
+    box-shadow:
+      0 10px 28px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(175, 209, 177, 0.15),
+      0 0 0 1px rgba(175, 209, 177, 0.15);
+  }
+}
+
+.stat-number {
+  font-family: 'Fredoka', sans-serif;
+  font-size: clamp(1.2rem, 1.8vw, 1.6rem);
+  font-weight: 600;
+  color: #AFD1B1;
+  line-height: 1.1;
+  margin-bottom: 0.3rem;
+}
+
+.stat-label {
+  font-family: 'Lato', sans-serif;
+  font-size: clamp(0.68rem, 0.85vw, 0.78rem);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  line-height: 1.3;
+}
+
+@media (max-width: 900px) {
+  .pres-text h2::after { margin: 0.4rem auto 1.25rem; }
+  .pres-text h2,
+  .pres-text p { text-align: center; }
+  .pres-stats { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .pres-stats { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ================================================
+   TITRE PRESTATIONS (bandeau vert)
+   ================================================ */
+.prestations {
+  background: var(--secondary-color);
+  color: var(--primary-color);
+  padding: clamp(20px, 3vw, 36px) 0;
+}
+
+.presentation_title {
+  text-align: center;
+  font-weight: 600;
+  font-size: clamp(1.4rem, 2.2vw, 2rem);
+  padding: 0;
+  margin-bottom: 0.3rem;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 52px;
+    height: 3px;
+    background: var(--primary-color);
+    border-radius: 2px;
+    margin: 0.4rem auto 0;
+  }
 }
 
 #presta {
   text-align: center;
+  font-size: clamp(0.9rem, 1.1vw, 1.05rem);
+  color: var(--primary-color);
+  opacity: 0.85;
+  margin: 0.5rem 0 0;
 }
 
-.presentation p { 
-   text-align: center;  
-  line-height: 1.6;
-  font-size: clamp(1rem, 1.15rem + .2vw, 1.125rem);
-  padding: 0 0.5rem;
-}
-
-
-                              /*   Caroussel  */
-
-/* utilitaire full-bleed  */
-.full-bleed {
-  width: 100vw;
-}
-
-/* titre H2 centré */
-.presentation_title {
-  text-align: center;
-  font-weight: 600;  
-  padding-top: 15px;
-}
-
-/* bandeau du H2 */
-.prestations {
-  background: var(--secondary-color);
-  color: #fff;
-  padding: 16px 0;
-}
+/* ================================================
+   SECTIONS PRESTATION (avec carousels)
+   ================================================ */
+.full-bleed { width: 100vw; }
 
 .prestation {
   background: var(--secondary-color);
-  color: #fff;
+  color: var(--primary-color);
+  padding-bottom: clamp(20px, 3vw, 36px);
+  scroll-margin-top: 120px;
 }
 
 .prestation__title {
-  margin: 0 0 10px 0;
-  padding-top: 20px;
-  padding-left: 6vw; 
-  
-  white-space: normal;
-}
-
-
-
-/* Bandeau CTA */
-.cta {
-  background: var(--primary-color);
-  color: #fff;                     
-  text-align: center;
-  padding: clamp(24px, 5vw, 56px) 0;
-}
-
-.btn-contact {
-  display: inline-block;
-  margin-top: 0.75rem;
-  padding: 10px 22px;
-  border-radius: 8px;
-  border: 1px solid transparent;
-  background: var(--secondary-color);
-  color: #fff;                     
-  font-weight: 600;
-  cursor: pointer;
-  transition: background .2s ease, transform .1s ease, box-shadow .2s ease;  
-}
-
-/*   Info bulle Divers   */
-.prestation__title {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: .5rem;
+  gap: 0.6rem;
+  margin: clamp(20px, 3vw, 36px) auto 12px;
+  padding: 0.45rem 1.4rem;
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  font-weight: 600;
+  color: #073B4C;
+  background: transparent;
+  border: 2px solid #073B4C;
+  border-radius: 50px;
+  letter-spacing: 0.5px;
+  transition: background 0.25s ease, color 0.25s ease;
+
+  &:hover {
+    background: #073B4C;
+    color: #AFD1B1;
+  }
 }
 
+/* ---- Info-bulle "Divers" ---- */
 .help {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  width: 22px; height: 22px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   border: 2px solid currentColor;
-  font-size : 17px;
+  font-size: 15px;
   cursor: help;
   position: relative;
-  opacity: 0.9;
-  
+  opacity: 0.85;
+  flex-shrink: 0;
 }
 
-/* Bulle */
 .help::after {
   content: attr(aria-label);
   position: absolute;
@@ -123,29 +237,89 @@
   bottom: calc(100% + 8px);
   background: var(--primary-color);
   color: #fff;
-  padding: .5rem .75rem;
+  padding: 0.5rem 0.75rem;
   border-radius: 8px;
   width: min(320px, 90vw);
   white-space: normal;
+  font-size: 0.82rem;
+  line-height: 1.5;
   opacity: 0;
   pointer-events: none;
-  transition: opacity .15s;
+  transition: opacity 0.15s ease;
+  z-index: 10;
+  box-shadow: 0 4px 16px rgba(7, 59, 76, 0.25);
 }
 
-/* Petit triangle */
 .help::before {
-  content: "";
+  content: '';
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   bottom: 100%;
   border: 6px solid transparent;
-  border-top-color: rgba(0,0,0,.9);
+  border-top-color: var(--primary-color);
   opacity: 0;
-  transition: opacity .15s;
+  transition: opacity 0.15s ease;
 }
 
 .help:hover::after,
 .help:focus::after,
 .help:hover::before,
 .help:focus::before { opacity: 1; }
+
+/* ================================================
+   CTA CONTACT
+   ================================================ */
+.cta {
+  background: var(--primary-color);
+  color: #fff;
+  text-align: center;
+  padding: clamp(12px, 2vw, 24px) 0 clamp(32px, 5vw, 64px);
+
+  &::before {
+    content: '';
+    display: block;
+    width: 104px;
+    height: 3px;
+    background: var(--secondary-color);
+    border-radius: 2px;
+    margin: 0.1rem auto 1.25rem;
+  }
+}
+
+.cta h5 {
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  font-size: clamp(0.9rem, 1.3vw, 1.05rem);
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255);
+  margin-bottom: 0.4rem;
+}
+
+.cta h2 {
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 1.25rem;
+}
+
+.btn-contact {
+  display: inline-block;
+  padding: 12px 32px;
+  border-radius: var(--radius-btn);
+  border: none;
+  background: var(--secondary-color);
+  color: #fff;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+
+  &:hover {
+    background: #047a5f;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(5, 155, 119, 0.4);
+  }
+}

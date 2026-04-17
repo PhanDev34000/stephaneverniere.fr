@@ -1,4 +1,4 @@
-<!--    1ere image    -->
+<!--    Hero — bandeau simple (texte déjà intégré dans l'image)    -->
 <section class="bandeau full-bleed">
   <img
     src="assets/bandeau/intro.png"
@@ -8,96 +8,166 @@
   />
 </section>
 
-<!--    Présentation    -->
+<!--    Présentation  — fond bleu foncé    -->
 <section class="presentation full-bleed">
   <div class="presentation__inner">
     <h2>Présentation</h2>
 
     <div class="presentation-grid">
       <div class="img-wrap">
-        <img class="bandeau-img img-fluid" src="assets/images/sv.png" alt="Portrait de Stéphane Vernière" />
+        <div class="img-hover-wrap">
+          <img class="img-fluid" src="assets/images/sv.png" alt="Portrait de Stéphane Vernière" />
+          <div class="img-overlay">Enchanté !</div>
+        </div>
       </div>
 
       <div class="text-wrap">
-        <p>Je suis un photographe passionné, fort <strong>d'une vingtaine années d'expérience</strong> dans le domaine.<br> Mon parcours m'a conduit à devenir un <strong>photographe indépendant</strong>, tout en collaborant avec de nombreuses <Strong>agences à Paris</Strong>.<br>
+        <p>Je suis un photographe passionné, fort <strong>d'une vingtaine années d'expérience</strong> dans le domaine.<br> Mon parcours m'a conduit à devenir un <strong>photographe indépendant</strong>, tout en collaborant avec de nombreuses <strong>agences à Paris</strong>.<br>
           Au fil des années, j'ai acquis une diversité d'expériences, mais mes spécialités résident principalement dans la <strong>photographie de reportages, l'événementiel et l'institutionnel</strong>.<br>
           Que vous soyez un <strong>professionnel</strong> à la recherche d'images percutantes pour votre entreprise ou un <strong>particulier</strong> souhaitant capturer des moments précieux, je suis là pour <strong>répondre à vos besoins</strong>.<br>
           De plus, pour enrichir mes services, j'ai créé mon propre <strong>Photobooth</strong>, que je mets à votre disposition en location pour animer vos soirées et événements spéciaux.<br>
-          Basé dans la magnifique région de Montpellier, je suis prêt à travailler avec vous pour concrétiser <strong>votre projet photographique</strong>.<br>
+          Basé dans la magnifique région de Montpellier, je suis prêt à travailler avec vous pour concrétiser <strong>votre projet photographique</strong>.
+        </p>
       </div>
 
       <div class="img-wrap">
-        <img class="bandeau-img img-fluid" src="assets/images/App.png" alt="Matériel photo" />
+        <div class="img-hover-wrap">
+          <img class="img-fluid" src="assets/images/App.png" alt="Matériel photo" />
+          <div class="img-overlay">Team Canon</div>
+        </div>
+      </div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-number">20 ans</div>
+        <div class="stat-label">d'expérience photo</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">8 ans</div>
+        <div class="stat-label">en photobooth</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">clients satisfaits</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">Montpellier</div>
+        <div class="stat-label">& toute la France</div>
       </div>
     </div>
   </div>
 </section>
 
-<!--   Carousel   -->
-  <app-film-strip
-    [folder]="'prestations'"
-    [limit]="40"
-    [shuffle]="true"
-    title=""
-    style="--strip-h: 200px">
-  </app-film-strip>
+<!--   Carousel  — fond bleu foncé   -->
+<app-film-strip
+  [folder]="'prestations'"
+  [limit]="40"
+  [shuffle]="true"
+  title=""
+  style="--strip-h: 200px">
+</app-film-strip>
 
+<!-- VAGUE : bleu foncé → vert -->
+<div class="wave-sep full-bleed" aria-hidden="true">
+  <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,28 C360,64 1080,-8 1440,28 L1440,0 L0,0 Z" fill="#073B4C"/>
+    <path d="M0,28 C360,64 1080,-8 1440,28 L1440,56 L0,56 Z" fill="#AFD1B1"/>
+  </svg>
+</div>
 
-
-<!--    Photographe    -->
+<!--    Photographe  — fond vert    -->
 <section class="presta full-bleed">
   <div class="section-inner">
     <h2>Photographe</h2>
-    
     <p class="subtitle">
       Portraits, événements, mode, institutionnel, mariages… des prestations pensées pour mettre vos projets en valeur !
     </p>
 
     <ul class="presta-grid" role="list">
       <li class="presta-item">
-        <figure>
-          <img class="img-fluid" src="assets/presta/book.png" alt="Prestation Book" loading="lazy">
-          <figcaption>Book</figcaption>
-        </figure>
+        <a routerLink="/photographe" fragment="portrait">
+          <figure>
+            <div class="img-round-wrap">
+              <img src="assets/presta/book.png" alt="Portrait" loading="lazy">
+              <span class="img-overlay-text">Visitez la galerie</span>
+            </div>
+            <figcaption>Portrait</figcaption>
+          </figure>
+        </a>
       </li>
       <li class="presta-item">
-        <figure>
-          <img class="img-fluid" src="assets/presta/culinaire.png" alt="Prestation Culinaire" loading="lazy">
-          <figcaption>Packshot</figcaption>
-        </figure>
+        <a routerLink="/photographe" fragment="institutionnel">
+          <figure>
+            <div class="img-round-wrap">
+              <img src="assets/presta/institutionnel.png" alt="Institutionnel" loading="lazy">
+              <span class="img-overlay-text">Visitez la galerie</span>
+            </div>
+            <figcaption>Institutionnel</figcaption>
+          </figure>
+        </a>
       </li>
       <li class="presta-item">
-        <figure>
-          <img class="img-fluid" src="assets/presta/event.png" alt="Prestation Événement" loading="lazy">
-          <figcaption>Événement</figcaption>
-        </figure>
-      </li>      
-      <li class="presta-item">
-        <figure>
-          <img class="img-fluid" src="assets/presta/institutionnel.png" alt="Prestation Institutionnel" loading="lazy">
-          <figcaption>Institutionnel</figcaption>
-        </figure>
+        <a routerLink="/photographe" fragment="evenementiel">
+          <figure>
+            <div class="img-round-wrap">
+              <img src="assets/presta/event.png" alt="Événementiel" loading="lazy">
+              <span class="img-overlay-text">Visitez la galerie</span>
+            </div>
+              <figcaption>Événementiel</figcaption>
+          </figure>
+        </a>
       </li>
       <li class="presta-item">
-        <figure>
-          <img class="img-fluid" src="assets/presta/mariage.png" alt="Prestation Mariage" loading="lazy">
-          <figcaption>Mariage</figcaption>
-        </figure>
+        <a routerLink="/photographe" fragment="mariage">
+          <figure>
+            <div class="img-round-wrap">
+              <img src="assets/presta/mariage.png" alt="Mariage" loading="lazy">
+              <span class="img-overlay-text">Visitez la galerie</span>
+            </div>
+            <figcaption>Mariage</figcaption>
+          </figure>
+        </a>
       </li>
       <li class="presta-item">
-        <figure>
-          <img class="img-fluid" src="assets/presta/fashion.png" alt="Prestation Fashion" loading="lazy">
-          <figcaption>Divers</figcaption>
-        </figure>
+        <a routerLink="/photographe" fragment="packshot">
+          <figure>
+            <div class="img-round-wrap">
+              <img src="assets/presta/culinaire.png" alt="Packshot" loading="lazy">
+              <span class="img-overlay-text">Visitez la galerie</span>
+            </div>
+            <figcaption>Packshot</figcaption>
+          </figure>
+        </a>
+      </li>
+      <li class="presta-item">
+        <a routerLink="/photographe" fragment="divers">
+          <figure>
+            <div class="img-round-wrap">
+              <img src="assets/presta/fashion.png" alt="Divers" loading="lazy">
+              <span class="img-overlay-text">Visitez la galerie</span>
+            </div>
+            <figcaption>Divers</figcaption>
+          </figure>
+        </a>
       </li>
     </ul>
   </div>
-  <button class="btn-contact2 d-block mx-auto" type="button" routerLink="/photographe">
+  <div class="btn-wrap">
+    <button class="btn-dark" type="button" routerLink="/photographe">
       En savoir plus !
     </button>
+  </div>
 </section>
 
-<!--    Photobooth    -->
+<!-- VAGUE : vert → bleu foncé -->
+<div class="wave-sep full-bleed" aria-hidden="true" style="background:#AFD1B1">
+  <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,28 C480,-8 960,64 1440,28 L1440,0 L0,0 Z" fill="#AFD1B1"/>
+    <path d="M0,28 C480,-8 960,64 1440,28 L1440,56 L0,56 Z" fill="#073B4C"/>
+  </svg>
+</div>
+
+<!--    Photobooth  — fond bleu foncé    -->
 <section class="photobooth full-bleed">
   <div class="section-inner">
     <h2>Photobooth</h2>
@@ -105,25 +175,30 @@
       Animation clé en main, impressions immédiates, partage digital, idéal pour tous vos événements !
     </p>
     <ul class="pb-grid" role="list">
-      <li><img class="img-fluid" src="assets/presta/Pb1.png" alt="Photobooth – exemple 1" loading="lazy"></li>
-      <li><img class="img-fluid" src="assets/presta/Pb2.png" alt="Photobooth – exemple 2" loading="lazy"></li>
-      <li><img class="img-fluid" src="assets/presta/Pb3.png" alt="Photobooth – exemple 3" loading="lazy"></li>
-      <li><img class="img-fluid" src="assets/presta/Pb4.png" alt="Photobooth – exemple 4" loading="lazy"></li>
-      <li><img class="img-fluid" src="assets/presta/Pb5.png" alt="Photobooth – exemple 5" loading="lazy"></li>
-      <li><img class="img-fluid" src="assets/presta/Pb6.png" alt="Photobooth – exemple 6" loading="lazy"></li>
+      <li><img src="assets/presta/Pb1.png" alt="Photobooth – exemple 1" loading="lazy"></li>
+      <li><img src="assets/presta/Pb2.png" alt="Photobooth – exemple 2" loading="lazy"></li>
+      <li><img src="assets/presta/Pb3.png" alt="Photobooth – exemple 3" loading="lazy"></li>
+      <li><img src="assets/presta/Pb4.png" alt="Photobooth – exemple 4" loading="lazy"></li>
+      <li><img src="assets/presta/Pb5.png" alt="Photobooth – exemple 5" loading="lazy"></li>
+      <li><img src="assets/presta/Pb6.png" alt="Photobooth – exemple 6" loading="lazy"></li>
     </ul>
+    <div class="btn-wrap">
+      <button class="btn-green" type="button" routerLink="/photobooth">
+        En savoir plus !
+      </button>
+    </div>
   </div>
-  </section>
-   <section class="cta full-bleed">
-      <div class="section-inner">
-        <button class="btn-contact" type="button" routerLink="/photobooth">
-            En savoir plus !
-        </button>
-      </div>
 </section>
 
+<!-- VAGUE : bleu foncé → vert -->
+<div class="wave-sep full-bleed" aria-hidden="true" style="background:#073B4C">
+  <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,28 C360,64 1080,-8 1440,28 L1440,0 L0,0 Z" fill="#073B4C"/>
+    <path d="M0,28 C360,64 1080,-8 1440,28 L1440,56 L0,56 Z" fill="#AFD1B1"/>
+  </svg>
+</div>
 
-<!--    citation    -->
+<!--    Citation  — fond vert    -->
 <section class="quote full-bleed">
   <div class="section-inner">
     <blockquote class="quote-text">
@@ -133,12 +208,21 @@
   </div>
 </section>
 
-<!-- Contactez-moi  -->
- <section class="cta full-bleed">
+<!-- VAGUE : vert → bleu foncé -->
+<div class="wave-sep full-bleed" aria-hidden="true">
+  <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,28 C480,-8 960,64 1440,28 L1440,0 L0,0 Z" fill="#AFD1B1"/>
+    <path d="M0,28 C480,-8 960,64 1440,28 L1440,56 L0,56 Z" fill="#073B4C"/>
+  </svg>
+</div>
+
+<!--    Contactez-moi  — fond bleu foncé    -->
+<section class="cta full-bleed">
   <div class="section-inner">
     <h2>Pour plus d'infos<br> contactez-moi !</h2>
-    <button class="btn-contact" type="button" routerLink="/contact">
-      Contact
+    <p class="cta-sub">Chaque belle histoire commence par un premier message.</p>
+    <button class="btn-green btn-cta" type="button" routerLink="/contact">
+      ✉ Contact
     </button>
   </div>
 </section>

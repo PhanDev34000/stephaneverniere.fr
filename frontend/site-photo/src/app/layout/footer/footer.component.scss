@@ -1,116 +1,250 @@
-/* Footer plein écran, fond primaire, textes blancs */
+/* ================================================
+   FOOTER — S. Vernière Photographe
+   Fond très sombre #021f28 — ancre la page
+   ================================================ */
+
 .site-footer {
-  
-  color: black;
-  padding: clamp(20px, 4vw, 40px) 0;
+  background: #021f28;
+  color: rgba(255, 255, 255, 0.85);
+  padding: clamp(28px, 5vw, 56px) 0 clamp(16px, 3vw, 28px);
+  border-top: 1px solid rgba(175, 209, 177, 0.2);
 }
 
-/* Grille 3 colonnes de même taille */
+/* ================================================
+   GRILLE 3 COLONNES
+   ================================================ */
 .footer-inner {
   max-width: 1440px;
   margin: 0 auto;
-  padding: 0 1rem;
-    justify-items: center;
+  padding: 0 2rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: clamp(16px, 3vw, 32px);
+  gap: clamp(16px, 3vw, 48px);
   align-items: center;
 }
 
-/* Titres + reset */
+/* ================================================
+   TITRES
+   ================================================ */
 .footer-title {
-  margin: 0 0 .5rem 0;
+  font-family: 'Fredoka', sans-serif;
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
   font-weight: 600;
-  color: black;
-  
+  color: #ffffff;
+  margin: 0 0 1rem;
+  letter-spacing: 0.3px;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 2px;
+    background: #AFD1B1;
+    border-radius: 2px;
+    margin: 0.3rem 0 0;
+    opacity: 0.6;
+  }
 }
 
-/* Colonne gauche : contact */
+/* ================================================
+   COLONNE GAUCHE — Informations
+   ================================================ */
+.contact {
+  font-style: normal;
+  font-size: clamp(0.82rem, 1vw, 0.92rem);
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.contact strong {
+  color: #fff;
+  font-weight: 600;
+}
+
 .contact a {
-  color: black;
-  text-decoration: underline;
-  
-}
-.contact a:hover {
-  opacity: .9;
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.2s ease, opacity 0.2s ease;
+
+  &:hover {
+    color: #AFD1B1;
+    text-decoration: underline;
+  }
 }
 
-/* Colonne centrale : logo centré et responsive */
-.footer-logo {
-  display: grid;
-  place-items: center;
+.footer-divider {
+  height: 1px;
+  background: rgba(175, 209, 177, 0.2);
+  margin: 1rem 0;
 }
+
+.rights {
+  display: block;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.3px;
+}
+
+/* ================================================
+   COLONNE CENTRALE — Logo
+   ================================================ */
+.footer-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
 .footer-logo img {
   display: block;
   width: 100%;
   height: auto;
-  max-width: clamp(140px, 18vw, 240px);
+  max-width: clamp(130px, 16vw, 220px);
+  opacity: 0.92;
+  transition: opacity 0.2s ease;
+
+  &:hover { opacity: 1; }
 }
 
-/* Colonne droite : liens + droits */
-/* === Footer - Colonne droite : Liens === */
-.footer-links { text-align: center; }
-
-.footer-links ul { list-style: none; margin: 0 0 .5rem 0; padding: 0; }
-.footer-links li + li { margin-top: .25rem; }
-
-.footer-links a { color: #fff; text-decoration: underline; } /* pas d'opacité ici */
-.rights { display: block; opacity: .8; }
-
-/* Responsive */
-@media (max-width: 768px) {
-  .footer-inner { grid-template-columns: 1fr; text-align: center; }
-  .footer-links { text-align: center; }
+.footer-tagline {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 300;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  margin: 0;
+  text-align: center;
 }
 
-/* Liste d’icônes */
-.footer-links ul.socials {
-  margin: 0 0 .5rem 0; padding: 0;
-  display: flex; flex-direction: column; align-items: center;
-  gap: clamp(8px, 1.2vw, 12px);
+/* ================================================
+   COLONNE DROITE — Liens
+   ================================================ */
+.footer-links {
+  text-align: center;
 }
-.footer-links ul.socials li { list-style: none; position: relative; }
 
-/* Icônes — TOUJOURS visibles */
-.footer-links ul.socials img {
+.footer-links .footer-title::after {
+  margin: 0.3rem auto 0;
+}
+
+.socials {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(10px, 1.5vw, 16px);
+}
+
+.socials li {
+  list-style: none;
+  position: relative;
+}
+
+.socials a {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+
+  &:hover { transform: translateY(-2px); }
+}
+
+.socials img {
   display: block;
-  width: clamp(28px, 3.2vw, 40px);
   height: auto;
-  transform: none;
-  opacity: 1 !important;
-  visibility: visible !important;
-  transition: transform .15s ease;
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
 }
-/* Dogpix un peu plus grand */
-.footer-links ul.socials img[alt="Dogpix"] { width: clamp(55px, 6vw, 85px); }
 
-/* Effet léger au survol (sans jouer sur l'opacité) */
-.footer-links ul.socials a:hover img { transform: translateY(-2px); }
+.socials a:hover img { opacity: 1; }
 
-/* === Infobulle simple via un span === */
-.footer-links .has-tip { position: relative; }
-.footer-links .has-tip .tip {
+/* Taille Instagram */
+.socials img[alt="Instagram"] {
+  width: clamp(26px, 3vw, 36px);
+}
+
+/* Taille Dogpix — version blanche */
+.socials img[alt="Dogpix"] {
+  width: clamp(60px, 6.5vw, 90px);
+}
+
+.social-label {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.5px;
+  transition: color 0.2s ease;
+}
+
+.socials a:hover .social-label {
+  color: #AFD1B1;
+}
+
+/* ================================================
+   INFOBULLES
+   ================================================ */
+.has-tip { position: relative; }
+
+.has-tip .tip {
   position: absolute;
-  left: 50%; transform: translateX(-50%);
-  bottom: calc(100% + 8px);
-  background: var(--primary-color);
-  color: #fff;
-  padding: .5rem .75rem;
-  border-radius: 8px;
-  width: min(320px, 85vw);
-  white-space: normal; line-height: 1.35; text-align: left;
-  opacity: 0; pointer-events: none; transition: opacity .15s ease;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(100% + 10px);
+  background: #073B4C;
+  border: 1px solid rgba(175, 209, 177, 0.3);
+  color: rgba(255, 255, 255, 0.9);
+  padding: 0.6rem 0.85rem;
+  border-radius: 10px;
+  width: min(300px, 85vw);
+  white-space: normal;
+  line-height: 1.5;
+  font-size: 0.8rem;
+  text-align: left;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease;
   z-index: 10;
-}
-/* petit triangle */
-.footer-links .has-tip .tip::before {
-  content: "";
-  position: absolute;
-  left: 50%; transform: translateX(-50%);
-  top: 100%;
-  border: 6px solid transparent; border-bottom-color: var(--primary-color);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
-/* Affichage au survol du li (ou focus dans le lien) */
-.footer-links .has-tip:hover .tip,
-.footer-links .has-tip:focus-within .tip { opacity: 1; }
+.has-tip .tip::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 100%;
+  border: 6px solid transparent;
+  border-top-color: #073B4C;
+}
+
+.has-tip:hover .tip,
+.has-tip:focus-within .tip { opacity: 1; }
+
+/* ================================================
+   RESPONSIVE
+   ================================================ */
+@media (max-width: 768px) {
+  .footer-inner {
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+  }
+
+  /* Logo seul en haut, centré */
+  .footer-logo {
+    order: 1;
+    grid-column: 1 / -1;
+  }
+  
+   .footer-title::after {
+    margin: 0.3rem auto 0;
+  }
+
+  /* Infos et Liens côte à côte en dessous */
+  .footer-col:nth-child(1) { order: 2; }
+  .footer-col:nth-child(3) { order: 3; }
+}

@@ -44,14 +44,14 @@
   width: 40px; height: 40px;
   border-radius: 50%;
   border: 0;
-  background: rgba(0,0,0,.35);
+  background: #073B4C;
   color: #fff;
   cursor: pointer;
 
   display: flex; align-items: center; justify-content: center;
   line-height: 1; padding: 0; font-size: 22px;
 }
-.nav:hover { background: rgba(0,0,0,.5); }
+.nav:hover { background: var(--primary-light) }
 .nav.prev { left: 6px; }
 .nav.next { right: 6px; }
 

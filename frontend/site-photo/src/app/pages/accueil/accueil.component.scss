@@ -1,154 +1,354 @@
+/* ================================================
+   ACCUEIL COMPONENT — S. Vernière Photographe
+   Palette stricte : #073B4C (bleu) ↔ #AFD1B1 (vert)
+   ================================================ */
+
 .bandeau-img {
-  display: block;     /* enlève l’espace blanc sous l’image */
-  width: 100%;        /* prend toute la largeur dispo */
-  height: auto;       /* garde le ratio d’origine, pas de “grossissement” */
+  display: block;
+  width: 100%;
+  height: auto;
   max-width: 100%;
 }
 
-/* Section Présentation */
-.presentation {
-  background: var(--primary-color);
-  color: white;
-  padding: clamp(24px, 5vw, 56px) 0;
+/* ================================================
+   VAGUES SVG — fix anti-trait
+   margin-bottom: -1px sur la section précédente
+   et overflow: hidden sur wave-sep
+   ================================================ */
+.wave-sep {
+  display: block;
+  line-height: 0;
+  overflow: hidden;
+  margin-top: -1px;
+  margin-bottom: -1px;
+
+  svg {
+    display: block;
+    width: 100%;
+    height: 56px;
+  }
 }
 
-/* Contrainte de largeur à l’intérieur du full-bleed */
+/* Sections qui précèdent une vague : on "déborde" d'1px
+   pour éviter le trait résiduel entre section et SVG */
+.presentation,
+.presta,
+.photobooth,
+.quote {
+  margin-bottom: -1px;
+}
+
+/* ================================================
+   SECTION PRÉSENTATION — fond #073B4C
+   ================================================ */
+.presentation {
+  background: #073B4C;
+  color: white;
+  padding: clamp(32px, 5vw, 64px) 0 clamp(32px, 5vw, 64px);
+}
+
 .presentation__inner {
-  max-width: 1440px;   
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 1.5rem;
 }
 
 .presentation h2 {
-  margin: 0 0 1.5rem 0;
-  text-align: center;  
+  text-align: center;
   font-weight: 600;
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  color: #fff;
+  margin: 0 0 0.3rem;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 52px;
+    height: 3px;
+    background: #AFD1B1;
+    border-radius: 2px;
+    margin: 0.4rem auto 1.4rem;
+  }
 }
 
-/* Grille 1fr 3fr 1fr */
 .presentation-grid {
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
-  gap: clamp(16px, 3vw, 32px);
+  gap: clamp(16px, 3vw, 40px);
   align-items: center;
+  padding-bottom: clamp(24px, 4vw, 48px);
 }
 
-/* Centrage des colonnes images */
 .img-wrap {
   display: grid;
   place-items: center;
   width: 100%;
 }
 
-/* Responsive + taille maîtrisée sur desktop */
-.img-wrap img {
+.img-hover-wrap {
+  position: relative;
+  display: inline-block;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.img-hover-wrap img {
   display: block;
-  height: auto;
   width: 100%;
-  max-width: clamp(220px, 28vw, 520px); /* ← s'adapte à l'écran, bornes min/max */
-  object-fit: contain;                  /* pas de déformation */
+  transition: transform 0.35s ease;
 }
 
-/* Texte centré dans la colonne centrale */
+.img-hover-wrap:hover img {
+  transform: scale(1.05);
+}
+
+.img-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(7, 59, 76, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Fredoka', sans-serif;
+  font-size: clamp(1.1rem, 2vw, 1.6rem);
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 1px;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  border-radius: 50%;
+}
+
+.img-hover-wrap:hover .img-overlay {
+  opacity: 1;
+}
+
+.img-wrap img {
+  max-width: clamp(120px, 14vw, 200px); /* était clamp(180px, 22vw, 440px) */
+  box-shadow: 0 0 0 3px rgba(175, 209, 177, 0.5),
+              0 0 25px rgba(175, 209, 177, 0.2);
+  border-radius: 50%;
+}
+
 .text-wrap {
-  text-align: center;  
-  line-height: 1.6;
-  font-size: clamp(1rem, 1.15rem + .2vw, 1.125rem);
-  padding: 0 0.5rem;
+  text-align: center;
+  line-height: 1.8;
+  font-size: clamp(0.95rem, 1.1rem + 0.1vw, 1.05rem);
+  color: rgba(255, 255, 255, 0.9);
 }
 
-/* Responsive : mobile */
+.text-wrap strong { color: #fff; }
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  max-width: 800px;
+  margin: 2rem auto 0;
+  padding-bottom: clamp(24px, 4vw, 48px);
+  text-align: center;
+}
+
+.stat-item {
+  background: rgba(175, 209, 177, 0.1);
+  border: 1.5px solid rgba(175, 209, 177, 0.3);
+  border-radius: 16px;
+  padding: 1.2rem 0.75rem;
+  transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    border-color: rgba(175, 209, 177, 0.8);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(175, 209, 177, 0.15);
+  }
+}
+
+.stat-item .stat-number {
+  font-family: 'Fredoka', sans-serif;
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.stat-item .stat-label {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 0.4rem;
+}
+
+@media (max-width: 640px) {
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
 @media (max-width: 768px) {
   .presentation-grid {
-    grid-template-columns: 1fr;   /* une seule colonne */
-    text-align: center;  
-    gap: 16px;          
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
-
-  /* On change l'ordre pour empiler */
-  .presentation-grid .img-wrap:first-child {
-    order: -1; /* photo de gauche passe avant le texte */
-  }
-
-  .presentation-grid .text-wrap {
-    order: 0;  /* texte au milieu */
-  }
-
-  .presentation-grid .img-wrap:last-child {
-    order: 1; /* photo de droite passe après le texte */
-  }
-
-  .presentation-grid .img-wrap img {
-    max-width: 40vw;   
-  }
+  .img-wrap img { max-width: 28vw; }
 }
 
-
-/* Bandeau presta */
+/* ================================================
+   SECTION PHOTOGRAPHE — fond #AFD1B1
+   ================================================ */
 .presta {
-  background: var(--secondary-color);
-  color: var(--secondary-text);
-  padding: clamp(24px, 5vw, 56px) 0;
+  background: #AFD1B1;
+  padding: clamp(32px, 5vw, 64px) 0 clamp(24px, 4vw, 48px);
 }
 
-/* conteneur interne (largeur max) */
 .section-inner {
-  max-width: 1440px;  /* aligne avec la section précédente */
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 1.5rem;
 }
 
 .presta h2 {
   text-align: center;
-  margin: 0 0 .5rem 0;
   font-weight: 600;
-  color : white;
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  color: #073B4C;
+  margin: 0 0 0.3rem;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 52px;
+    height: 3px;
+    background: #073B4C;
+    border-radius: 2px;
+    margin: 0.4rem auto 1rem;
+  }
 }
 
 .subtitle {
   text-align: center;
-  margin: 0 0 1.25rem 0;
-  color : white;
-  font-size: 20px;
+  color: #073B4C;
+  font-size: 1.05rem;
+  opacity: 0.85;
+  margin: 0 0 1.75rem;
 }
 
-/* Grille 6 colonnes sur grands écrans */
+/* ---- Grille cartes prestations ---- */
 .presta-grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: clamp(12px, 2vw, 24px);
-  align-items: start;
-  justify-items: center;
-  padding-top: .5rem;
+  gap: clamp(10px, 1.5vw, 18px);
   list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
+.presta-item { list-style: none; }
+
+/* Carte glassmorphism : vert sur vert (symétrique du photobooth bleu sur bleu) */
 .presta-item figure {
   margin: 0;
-  display: grid;
-  gap: .5rem;
-  place-items: center;
-  text-align: center;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(7, 59, 76, 0.3);
+  border-radius: 18px;
+  padding: 1.1rem 0.75rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+  box-shadow:
+    0 4px 24px rgba(7, 59, 76, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+  cursor: pointer;
 }
 
-.presta-item img {
-  display: block;
+.presta-item figure:hover {
+  transform: translateY(-6px);
+  border-color: rgba(7, 59, 76, 0.7);
+  box-shadow:
+    0 14px 36px rgba(7, 59, 76, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    0 0 0 1px rgba(7, 59, 76, 0.15);
+}
+
+/* Overlay "Visitez la galerie" au hover */
+.img-round-wrap {
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  width: clamp(80px, 10vw, 145px);
+  height: clamp(80px, 10vw, 145px);
+}
+
+.img-round-wrap img {
   width: 100%;
-  height: auto;
-  max-width: clamp(120px, 13vw, 200px); /* responsive, un peu généreux */
+  height: 100%;
   object-fit: contain;
-  transition: transform .2s ease;
 }
 
-.presta-item:hover img { transform: translateY(-3px); }
+.img-overlay-text {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: rgba(7, 59, 76, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Lato', sans-serif;
+  font-size: clamp(0.55rem, 0.8vw, 0.7rem);
+  font-weight: 300;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  text-align: center;
+  padding: 0 0.5rem;
+}
 
+.presta-item figure:hover .img-overlay-text {
+  opacity: 1;
+}
+
+/* Titre en haut — bleu foncé sur fond vert */
 .presta-item figcaption {
-  font-family: 'Baloo 2', sans-serif;
-  font-size: 1.5rem;
-  color : white;
+  font-family: 'Fredoka', sans-serif;
+  font-size: clamp(0.85rem, 1.05vw, 1.05rem);
+  font-weight: 600;
+  color: #073B4C;
+  text-align: center;
+  letter-spacing: 0.4px;
+  order: -1;
+  transition: color 0.28s ease;
 }
 
-/* Responsiveness : 3 colonnes puis 2 colonnes */
+/* Titre blanc au hover */
+.presta-item figure:hover figcaption {
+  color: #ffffff;
+}
+
+/* Photo ronde — anneau bleu foncé */
+.presta-item figure img {
+  display: block;
+  width: clamp(80px, 10vw, 145px);
+  height: clamp(80px, 10vw, 145px);
+  object-fit: contain;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px rgba(7, 59, 76, 0.35);
+  transition: box-shadow 0.28s ease;
+}
+
+.presta-item figure:hover img {
+  box-shadow: 0 0 0 3px rgba(7, 59, 76, 0.75);
+}
+
+.presta-item a {
+  text-decoration: none;
+  display: block;
+}
+
 @media (max-width: 1200px) {
   .presta-grid { grid-template-columns: repeat(3, 1fr); }
 }
@@ -156,138 +356,202 @@
   .presta-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-/* Bandeau Photobooth */
+/* ================================================
+   SECTION PHOTOBOOTH — fond #073B4C
+   ================================================ */
 .photobooth {
-  background: var(--primary-color);
-  color: var(--primary-text);
-  padding: clamp(24px, 5vw, 56px) 0;
+  background: #073B4C;
+  padding: clamp(32px, 5vw, 64px) 0 clamp(24px, 4vw, 48px);
 }
 
 .photobooth h2 {
   text-align: center;
-  margin: 0 0 .5rem 0;
   font-weight: 600;
-  color : white
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  color: #fff;
+  margin: 0 0 0.3rem;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 52px;
+    height: 3px;
+    background: #AFD1B1;
+    border-radius: 2px;
+    margin: 0.4rem auto 1rem;
+  }
 }
 
 .photobooth .subtitle {
-  text-align: center;
-  margin: 0 0 1.25rem 0;
-  color : white;
-  font-size: 20px;
+  color: rgba(255, 255, 255, 0.8);
 }
 
-/* Grille d’images : 6 → 3 → 2 */
+/* Grille photobooth — mêmes cartes glass mais fond vert semi-transparent */
 .pb-grid {
   list-style: none;
   margin: 0;
   padding: 0;
-
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: clamp(12px, 2vw, 24px);
-  align-items: center;
-  justify-items: center;
+  gap: clamp(10px, 1.5vw, 18px);
 }
 
-.pb-grid > li { list-style: none; }
-.pb-grid > li::marker { content: ''; }
+.pb-grid > li {
+  list-style: none;
+  background: rgba(175, 209, 177, 0.18);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(175, 209, 177, 0.4);
+  border-radius: 18px;
+  padding: 1.1rem 0.75rem 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(175, 209, 177, 0.15);
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+}
 
-/* Vignettes sans figcaption */
+.pb-grid > li:hover {
+  transform: translateY(-6px);
+  border-color: rgba(175, 209, 177, 0.85);
+  box-shadow:
+    0 14px 36px rgba(0, 0, 0, 0.32),
+    inset 0 1px 0 rgba(175, 209, 177, 0.25),
+    0 0 0 1px rgba(175, 209, 177, 0.2);
+}
+
 .pb-grid img {
   display: block;
-  width: 100%;
-  height: auto;
-  max-width: clamp(120px, 13vw, 200px);
+  width: clamp(80px, 10vw, 145px);
+  height: clamp(80px, 10vw, 145px);
   object-fit: contain;
-  transition: transform .2s ease;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px rgba(175, 209, 177, 0.35);
+  transition: box-shadow 0.28s ease;
 }
 
-.pb-grid img:hover { transform: translateY(-6px); }
+.pb-grid > li:hover img {
+  box-shadow: 0 0 0 3px rgba(175, 209, 177, 0.75);
+}
 
-/* Breakpoints */
 @media (max-width: 1200px) {
   .pb-grid { grid-template-columns: repeat(3, 1fr); }
 }
 @media (max-width: 640px) {
-  .pb-grid {  grid-template-columns: repeat(2, 1fr);
-              align-items: start;
-              justify-items: center;   
-              padding-top: .5rem;  }
+  .pb-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-/* Bandeau citation */
+/* ================================================
+   SECTION CITATION — fond #AFD1B1
+   ================================================ */
 .quote {
-  background: var(--secondary-color);
-  padding: clamp(24px, 5vw, 56px) 0;
+  background: #AFD1B1;
+  padding: clamp(32px, 5vw, 64px) 0;
 }
 
 .quote-text {
   margin: 0 auto;
-  max-width: 900px;
+  max-width: 860px;
   text-align: center;
   font-style: italic;
-  line-height: 1.6;
-  font-weight: 400;
-  font-size: clamp(1.1rem, 2.4vw, 1.6rem);
-  color : white;
+  line-height: 1.75;
+  font-weight: 300;
+  font-size: clamp(1.05rem, 2vw, 1.5rem);
+  color: #073B4C;
+  padding: 0 1.5rem;
 }
 
 .quote-text footer {
-  margin-top: .75rem;
-  opacity: .85;
+  margin-top: 0.85rem;
   font-style: normal;
-  font-size: clamp(.95rem, 1.8vw, 1.1rem);
-  color : white;
+  font-size: clamp(0.82rem, 1.4vw, 0.95rem);
+  color: #073B4C;
+  opacity: 0.7;
+  letter-spacing: 1px;
+  font-weight: 700;
 }
 
-/* Bandeau CTA */
+/* ================================================
+   SECTION CTA CONTACT — fond #073B4C
+   ================================================ */
 .cta {
-  background: var(--primary-color);
-  color: #fff;                     
+  background: #073B4C;
+  color: #fff;
   text-align: center;
-  padding: clamp(24px, 5vw, 56px) 0;
+  padding: clamp(32px, 5vw, 64px) 0;
 }
 
-/* Bouton contact */
-.btn-contact {
+.cta h2 {
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 1.25rem;
+  line-height: 1.35;
+}
+
+.cta-sub {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: clamp(0.95rem, 1.3vw, 1.1rem);
+  font-style: italic;
+  margin-bottom: 1.75rem;
+  letter-spacing: 0.3px;
+}
+
+.btn-cta {
+  font-size: 1.15rem;
+  padding: 14px 40px;
+  letter-spacing: 0.5px;
+}
+
+/* ================================================
+   BOUTONS
+   ================================================ */
+.btn-wrap {
+  text-align: center;
+  padding: 1.5rem 0 0;
+}
+
+/* Sur fond vert → bouton bleu foncé */
+.btn-dark {
   display: inline-block;
-  margin-top: 0.75rem;
-  padding: 10px 22px;
-  border-radius: 8px;
-  border: 1px solid transparent;
-  background: var(--secondary-color);
-  color: #fff;                     
+  padding: 11px 30px;
+  border-radius: 24px;
+  border: none;
+  background: #073B4C;
+  color: #fff;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;
+
+  &:hover {
+    background: #0D5C70;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(7, 59, 76, 0.35);
+  }
+}
+
+/* Sur fond bleu → bouton vert */
+.btn-green {
+  display: inline-block;
+  padding: 11px 30px;
+  border-radius: 24px;
+  border: none;
+  background: #AFD1B1;
+  color: #073B4C;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background .2s ease, transform .1s ease, box-shadow .2s ease;
-}
+  transition: background 0.22s ease, color 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;
 
-.btn-contact2 {
-  display: inline-block;
-  margin-top: 0.75rem;
-  padding: 10px 22px;
-  border-radius: 8px;
-  border: 1px solid transparent;
-  background: var(--primary-color);
-  color: #fff;                     
-  font-weight: 600;
-  cursor: pointer;
-  transition: background .2s ease, transform .1s ease, box-shadow .2s ease;
-  
+  &:hover {
+    background: #059B77;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(5, 155, 119, 0.4);
+  }
 }
-
-.btn-contact:hover {
-  background: var(--secondary-dark);  
-  transform: translateY(-1px);
-}
-
-.btn-contact:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(255,255,255,.35); 
-}
-
-/* Réduit l'espace entre la grille Photobooth et son CTA */
-.photobooth { padding-bottom: 0; }
-.photobooth + .cta { padding-top: 6px; }           
-.photobooth + .cta .btn-contact { margin-top: 38px; } 
