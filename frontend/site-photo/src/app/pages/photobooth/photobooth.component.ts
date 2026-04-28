@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -6,7 +6,7 @@ import { PhotoboothService, PhotoboothReservationDto } from '../../services/phot
 import { FilmStrip2Component } from '../../component/film-strip2/film-strip2.component';
 import { FaqComponent } from '../../component/faq/faq.component';
 import { map } from 'rxjs/operators';
-
+import { SeoService } from '../../services/seo.service';
 
 @Component({
   standalone: true,
@@ -15,15 +15,16 @@ import { map } from 'rxjs/operators';
   templateUrl: './photobooth.component.html',
   styleUrls: ['./photobooth.component.scss']
 })
-export class PhotoboothComponent {
+export class PhotoboothComponent implements OnInit {
   private fb = inject(FormBuilder);
-  private photoboothApi = inject(PhotoboothService); 
+  private photoboothApi = inject(PhotoboothService);
+  private seo = inject(SeoService);
 
   today = new Date().toISOString().slice(0, 10);
   loading = signal(false);
   success = signal<string | null>(null);
   error = signal<string | null>(null);
-  
+
   form = this.fb.group({
     nom: [''],
     prenom: [''],
@@ -31,9 +32,16 @@ export class PhotoboothComponent {
     date: [''],
     duree: [''],
     lieu: [''],
-    message: ['', Validators.required] // SEUL champ requis (ta contrainte)
+    message: ['', Validators.required]
   });
 
+  ngOnInit(): void {
+    this.seo.updateSeo({
+      title: 'Location Photobooth Montpellier & Hérault | Stéphane Vernière',
+      description: 'Location de photobooth animé à Montpellier : mariage, soirée d\'entreprise, anniversaire. Impressions instantanées, accessoires, livreur sur place. Devis gratuit.',
+      url: '/photobooth'
+    });
+  }
 
   submit(): void {
     this.success.set(null);
@@ -50,15 +58,13 @@ export class PhotoboothComponent {
     this.photoboothApi.reserver(dto).subscribe({
       next: () => {
         this.loading.set(false);
-        this.success.set('Demande envoyée. Nous revenons vers vous rapidement !');
+        this.success.set('Demande envoyée, merci ! Je reviens vers vous rapidement.');
         this.form.reset();
       },
-      error: (err: HttpErrorResponse) => { // (e) typé
+      error: (err: HttpErrorResponse) => {
         this.loading.set(false);
         this.error.set(err?.error?.message || 'Une erreur est survenue. Réessayez.');
       }
     });
   }
-
-  
 }

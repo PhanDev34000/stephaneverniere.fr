@@ -1,8 +1,9 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ContactService, ContactDto } from '../../services/contact.service';
+import { SeoService } from '../../services/seo.service';
 
 @Component({
   standalone: true,
@@ -11,9 +12,11 @@ import { ContactService, ContactDto } from '../../services/contact.service';
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss']
 })
-export class ContactComponent {
+export class ContactComponent implements OnInit{
   private fb = inject(FormBuilder);
   private api = inject(ContactService);
+ 
+  constructor(private seo: SeoService) {}
 
   today = new Date().toISOString().slice(0, 10);
   loading = signal(false);
@@ -33,6 +36,15 @@ export class ContactComponent {
     lieu: [''],
     message: ['', Validators.required]
   });
+
+  ngOnInit(): void {
+    this.seo.updateSeo({
+      title: 'Contact – Photographe & Photobooth Montpellier | Stéphane Vernière',
+      description: 'Contactez Stéphane Vernière, photographe professionnel à Montpellier, pour un devis mariage, événementiel ou location de photobooth. Réponse sous 24h.',
+      url: '/contact'
+    });
+  }
+
 
   submit(): void {
     this.success.set(null);
