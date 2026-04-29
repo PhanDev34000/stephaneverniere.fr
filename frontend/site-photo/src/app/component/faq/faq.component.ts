@@ -1,6 +1,9 @@
+// =====================================================
+// faq.component.ts — PAGE PHOTOBOOTH (optimisé SEO)
+// =====================================================
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+ 
 @Component({
   selector: 'app-faq',
   standalone: true,
@@ -11,45 +14,44 @@ import { CommonModule } from '@angular/common';
 export class FaqComponent {
   faqs = [
     {
-      q: 'Qu\'est-ce qu’un photobooth ?',
-      a: 'Un photobooth est une borne photo interactive et autonome qui permet à vos invités de se prendre en photo en toute liberté. Moderne et ludique, il remplace le traditionnel photomaton en offrant bien plus de fonctionnalités : écran tactile, déclenchement automatique, impressions instantanées sur papier photo, et possibilité d’envoi des clichés par email. C’est l’animation idéale pour créer des souvenirs amusants et personnalisés lors de vos événements !'
+      q: 'Qu\'est-ce qu\'un photobooth ?',
+      a: 'Un photobooth est une borne photo interactive et autonome qui permet à vos invités de se prendre en photo en toute liberté. Moderne et ludique, il remplace le traditionnel photomaton en offrant bien plus de fonctionnalités : écran tactile, déclenchement automatique, impressions instantanées sur papier photo, et envoi des clichés par email. C\'est l\'animation idéale pour créer des souvenirs amusants et personnalisés lors de vos événements à Montpellier et dans toute la région !'
     },
     {
-      q: 'Combien de temps pour l’installation ?',
-      a: 'Environ 10 à 15 minutes selon l’accès et la configuration du lieu.'
+      q: 'Dans quelle zone géographique intervenez-vous pour la location de photobooth ?',
+      a: 'Je suis basé à Montpellier et j\'interviens dans tout l\'Hérault et l\'Occitanie : Nîmes, Béziers, Sète, Lunel, Palavas, Clermont-l\'Hérault... Pour les événements plus éloignés, n\'hésitez pas à me contacter, des déplacements plus lointains sont possibles selon disponibilités.'
+    },
+    {
+      q: 'Combien de temps faut-il pour installer le photobooth ?',
+      a: 'L\'installation du photobooth prend environ 10 à 15 minutes selon l\'accès et la configuration du lieu.'
     },
     {
       q: 'Les tirages sont-ils illimités ?',
-      a: 'La location inclut un pack de 400 tirages 10x15. Au-delà, il est possible d’ajouter des kits impression (75€/kit) que vous ne payerez que si vous l\'entamez !'
+      a: 'La location de photobooth inclut un pack de 400 tirages 10x15. Au-delà, il est possible d\'ajouter des kits impression (75€/kit) que vous ne payerez que si vous l\'entamez !'
     },
     {
       q: 'Les envois par mail sont-ils illimités ?',
-      a: 'Oui, il n\'y a aucune limite d\'envoi de mail !'
+      a: 'Oui, il n\'y a aucune limite d\'envoi par email ! Vos invités peuvent envoyer leurs photos directement depuis la borne, sans restriction de nombre.'
     },
-     {
+    {
       q: 'Peut-on personnaliser les photos (logo, texte, couleurs) ?',
-      a: 'Tout à fait ! Je peux personnaliser le gabarit des photos avec votre logo, un texte ou un visuel aux couleurs de votre événement.'
+      a: 'Tout à fait ! Je personnalise le gabarit des photos avec votre logo, un texte ou un visuel aux couleurs de votre événement — mariage, soirée d\'entreprise, anniversaire... Votre photobooth à Montpellier sera unique et parfaitement à votre image.'
     },
     {
       q: 'Peut-on personnaliser les écrans de la borne ?',
-      a: 'Oui ! Je peux personnaliser les différents écrans avec votre logo, un texte ou un visuel aux couleurs de votre événement. Il est d\'ailleurs conseillé d\'avoir une harmonie visuelle entre les écrans et les photos.'
+      a: 'Oui ! Les différents écrans peuvent être personnalisés avec votre logo, un texte ou un visuel aux couleurs de votre événement. Il est d\'ailleurs conseillé d\'avoir une harmonie visuelle entre les écrans et les photos pour un résultat professionnel.'
     },
     {
-      q: 'Sur place, de quoi a t\'on besoin pour installer la borne ?',
-      a: 'Sur le lieu de la prestation, il faudra 1 m² au sol à l\'emplacement souhaité de la borne et une prise 220V à proximité. Aussi, pour l\'envoi des photos par email, il faudra le code wifi du lieu de votre événement.'
+      q: 'De quoi a-t-on besoin sur place pour installer la borne ?',
+      a: 'Sur le lieu de la prestation, il faut prévoir 1 m² au sol à l\'emplacement souhaité et une prise 220V à proximité. Pour l\'envoi des photos par email, le code WiFi du lieu sera nécessaire.'
     },
     {
-      q: 'Récupère-t-on les photos après l’événement ?',
-      a: 'Maximum 48h aprés le retour de la borne, vous aurez la possibilité de télécharger toutes les photos réalisées lors de votre location. En effet, je vous enverrai un identifiant et mot de passe, que vous rentrerez sur ce site pour accéder de manière sécurisée à la page de téléchargement de votre galerie (en 1 clic) !'
+      q: 'Récupère-t-on les photos après l\'événement ?',
+      a: 'Oui ! Dans les 48h suivant le retour de la borne, vous recevrez un identifiant et un mot de passe pour accéder à une galerie privée et sécurisée sur ce site. Vous pourrez télécharger toutes vos photos en 1 clic !'
     },
-     {
-      q: 'Est-ce que quelqu’un reste sur place pour gérer la borne ?',
-      a: 'Non, mais le photobooth est entièrement autonome et simple d’utilisation. Je l’installe, je vous explique son fonctionnement, puis vous êtes libres de l’utiliser sans contrainte.'
+    {
+      q: 'Que se passe-t-il en cas de problème technique pendant l\'événement ?',
+      a: 'Le matériel est fiable et testé avant chaque prestation. En cas de souci, je reste joignable et disponible pour intervenir rapidement. Votre événement à Montpellier se déroulera sans stress !'
     },
-     {
-      q: 'Et si jamais il y a un souci technique pendant l’événement ?',
-      a: 'Le matériel est fiable, mais en cas de problème je reste joignable et disponible pour intervenir rapidement.'
-    },
-    
   ];
 }

@@ -1,4 +1,68 @@
 Options -MultiViews
+
+# ============================================
+# REDIRECTIONS ANGULAR
+# ============================================
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^ index.html [QSA,L]
+
+# ============================================
+# COMPRESSION GZIP
+# Réduit le poids des fichiers JS/CSS/HTML
+# ============================================
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE text/javascript
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/json
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# ============================================
+# MISE EN CACHE NAVIGATEUR
+# JS/CSS/images : 1 an (Angular hash les noms)
+# HTML : pas de cache (toujours frais)
+# ============================================
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # HTML — jamais en cache (important pour Angular)
+  ExpiresByType text/html                 "access plus 0 seconds"
+
+  # CSS et JavaScript — 1 an
+  ExpiresByType text/css                  "access plus 1 year"
+  ExpiresByType application/javascript    "access plus 1 year"
+
+  # Images — 6 mois
+  ExpiresByType image/jpeg                "access plus 6 months"
+  ExpiresByType image/png                 "access plus 6 months"
+  ExpiresByType image/webp                "access plus 6 months"
+  ExpiresByType image/svg+xml             "access plus 6 months"
+  ExpiresByType image/x-icon              "access plus 1 year"
+
+  # Fonts — 1 an
+  ExpiresByType font/woff2                "access plus 1 year"
+  ExpiresByType font/woff                 "access plus 1 year"
+</IfModule>
+
+# ============================================
+# EN-TÊTES DE CACHE (complément)
+# ============================================
+<IfModule mod_headers.c>
+  # JS et CSS buildés par Angular (noms hashés) → cache long
+  <FilesMatch "\.(js|css)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # Images
+  <FilesMatch "\.(jpg|jpeg|png|webp|svg|ico)$">
+    Header set Cache-Control "public, max-age=15552000"
+  </FilesMatch>
+
+  # HTML → jamais en cache
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+  </FilesMatch>
+</IfModule>
